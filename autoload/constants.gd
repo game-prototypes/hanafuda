@@ -1,0 +1,28 @@
+extends Node
+
+const CARD_WIDTH:=125
+
+
+enum Month {
+	JANUARY,
+	FEBRUARY,
+	MARCH,
+	APRIL,
+	MAY,
+	JUNE,
+	JULY,
+	AUGUST,
+	SEPTEMBER,
+	OCTOBER,
+	NOVEMBER,
+	DECEMBER	
+}
+
+enum CardType {
+	PLAIN,
+	POETRY_RIBBON,
+	PLAIN_RIBBON,
+	PURPLE_RIBBON,
+	LIGHT,
+	ANIMAL
+}

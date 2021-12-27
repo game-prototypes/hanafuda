@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/cards/Hanafuda_January_Hikari.svg.png" type="Texture" id=1]
+[ext_resource path="res://assets/cards/Hanafuda_January_Hikari.png" type="Texture" id=1]
 [ext_resource path="res://entities/card/card.gd" type="Script" id=2]
 
 [node name="Card" type="Node2D"]
