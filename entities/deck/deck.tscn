@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/cards/hanafuda_back.png" type="Texture" id=1]
+[ext_resource path="res://assets/hanafuda_back.png" type="Texture" id=1]
 [ext_resource path="res://entities/deck/deck.gd" type="Script" id=2]
 [ext_resource path="res://entities/card/card.tscn" type="PackedScene" id=3]
 
