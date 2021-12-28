@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://entities/card_stack/card_stack.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/deck/deck.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://entities/card/resources/card2.tres" type="Resource" id=5]
 [ext_resource path="res://entities/card/resources/card4.tres" type="Resource" id=6]
 [ext_resource path="res://entities/card/resources/card3.tres" type="Resource" id=7]
+[ext_resource path="res://entities/camera/main_camera.gd" type="Script" id=8]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 3 )
@@ -20,3 +21,12 @@ position = Vector2( 505, 432 )
 [node name="Deck" parent="." instance=ExtResource( 2 )]
 position = Vector2( 891, 195 )
 cards = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 6 ) ]
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2( 514, 304 )
+current = true
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_lock_": true
+}
+camera_speed = 250.0
