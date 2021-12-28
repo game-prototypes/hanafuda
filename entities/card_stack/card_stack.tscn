@@ -10,4 +10,4 @@ script = ExtResource( 1 )
 position = Vector2( -1, -2 )
 texture = ExtResource( 3 )
 
-[node name="Cards" type="Node" parent="."]
+[node name="Cards" type="Node2D" parent="."]

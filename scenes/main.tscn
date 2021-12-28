@@ -12,13 +12,14 @@ __meta__ = {
 }
 
 [node name="PlayerStack" parent="." instance=ExtResource( 1 )]
-position = Vector2( 505, 432 )
+position = Vector2( 514, 475 )
 
 [node name="OponentStack" parent="." instance=ExtResource( 1 )]
-position = Vector2( 513, 134 )
+position = Vector2( 513, 41 )
+card_orientation = 1
 
 [node name="Table" parent="." instance=ExtResource( 1 )]
-position = Vector2( 518, 306 )
+position = Vector2( 514, 272 )
 
 [node name="Deck" parent="." instance=ExtResource( 2 )]
 position = Vector2( 891, 195 )
