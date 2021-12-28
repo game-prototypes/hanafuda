@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Hanafuda_April_Tane.svg.png-b4a430fe5bf19da193f38ffb68aa4105.stex"
+path="res://.import/Hanafuda_April_Tane.png-fdfb750ae20c724265cfa5b4ea1995de.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/Hanafuda_April_Tane.svg.png"
-dest_files=[ "res://.import/Hanafuda_April_Tane.svg.png-b4a430fe5bf19da193f38ffb68aa4105.stex" ]
+source_file="res://assets/cards/Hanafuda_April_Tane.png"
+dest_files=[ "res://.import/Hanafuda_April_Tane.png-fdfb750ae20c724265cfa5b4ea1995de.stex" ]
 
 [params]
 
