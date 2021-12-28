@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Hanafuda_March_Tanzaku.svg.png-e494c69c60cc2161de0bd1d1c9d51ca9.stex"
+path="res://.import/Hanafuda_March_Tanzaku.png-10b6619fcd64d393a5421ca74955eadf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/Hanafuda_March_Tanzaku.svg.png"
-dest_files=[ "res://.import/Hanafuda_March_Tanzaku.svg.png-e494c69c60cc2161de0bd1d1c9d51ca9.stex" ]
+source_file="res://assets/cards/Hanafuda_March_Tanzaku.png"
+dest_files=[ "res://.import/Hanafuda_March_Tanzaku.png-10b6619fcd64d393a5421ca74955eadf.stex" ]
 
 [params]
 

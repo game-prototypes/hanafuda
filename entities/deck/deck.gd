@@ -7,17 +7,17 @@ export(Array,Resource) var cards=[]
 var cards_left:Array
 
 func _ready():
+	#Assert deck is ok
+	pass
+
+func reset():
 	cards_left=Array(cards)
-	shuffle()
 
 func size()->int:
 	return cards_left.size()
 
 func shuffle()->void:
-	print("BEFORE SHUFFLE", cards_left)
 	cards_left.shuffle()
-	print("AFTER SHUFFLE", cards_left)
-	
 
 func get_card() -> Card:
 	assert(size() > 0, "Deck empty")
