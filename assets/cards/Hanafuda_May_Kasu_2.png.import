@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Hanafuda_May_Tane.svg.png-31242f44737d721950478195d41802e0.stex"
+path="res://.import/Hanafuda_May_Kasu_2.png-f368ccd0c9ec40f0b7070c4e9dfc9868.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/Hanafuda_May_Tane.svg.png"
-dest_files=[ "res://.import/Hanafuda_May_Tane.svg.png-31242f44737d721950478195d41802e0.stex" ]
+source_file="res://assets/cards/Hanafuda_May_Kasu_2.png"
+dest_files=[ "res://.import/Hanafuda_May_Kasu_2.png-f368ccd0c9ec40f0b7070c4e9dfc9868.stex" ]
 
 [params]
 
