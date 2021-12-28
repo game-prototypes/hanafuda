@@ -3,10 +3,11 @@ extends Node2D
 
 export(Texture) var back_texture: Texture
 
+signal on_click(button_index)
+
 onready var sprite:Sprite=$Sprite
 
 var info:CardResource
-
 var faced_up:=true
 
 func _ready():
@@ -28,3 +29,7 @@ func _set_texture()->void:
 #	var rect:Rect2=sprite.get_rect()
 #	var scaled_size=rect.size*sprite.global_scale
 #	return scaled_size.x
+
+
+func _on_click(button_index):
+	emit_signal("on_click", button_index)

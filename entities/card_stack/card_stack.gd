@@ -27,7 +27,7 @@ func add_card(card: Card) -> void:
 	$Cards.add_child(card)
 	cards.append(card)
 	_draw_cards()
-	print(cards.size())
+	card.connect("on_click", self, "_on_card_click")
 	
 
 func _draw_cards():
@@ -57,3 +57,7 @@ func _get_total_width():
 		return max_width
 	else:
 		return total_width
+
+
+func _on_card_click(button_index:int):
+	print("Button clicked", button_index)
