@@ -1,6 +1,7 @@
 extends Node
 
-const CARD_WIDTH:=125
+const CARD_WIDTH:=125.0
+const CARD_HEIGHT:=204.9
 
 
 enum Month {

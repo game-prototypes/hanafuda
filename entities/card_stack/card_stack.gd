@@ -7,7 +7,8 @@ enum CardFace {
 	DOWN
 }
 
-export var separation:float=10.0
+export var separation:Vector2=Vector2(10.0, 5.0)
+export var row_size:int=0 # 0 means no rows
 export(CardFace) var card_orientation:int = CardFace.UP
 
 var cards:Array = []
@@ -30,10 +31,29 @@ func add_card(card: Card) -> void:
 	
 
 func _draw_cards():
-	var total_offset=max(separation*(cards.size()-1),0)
-	var total_width=cards.size()*Constants.CARD_WIDTH+total_offset
+	var total_width=_get_total_width()
 	var x_offset:float=-(total_width/2)
+	var y_offset:float=0
+	
+	var i=0
 	for card in cards:
-		var card_position:Vector2=Vector2(x_offset, 0)
+		i+=1
+		if i>row_size and row_size>0:
+			i=1
+			y_offset+=Constants.CARD_HEIGHT+separation.y
+			x_offset=-(total_width/2)
+			
+		var card_position:Vector2=Vector2(x_offset, y_offset)
 		card.position=card_position
-		x_offset+=Constants.CARD_WIDTH+separation
+		x_offset+=Constants.CARD_WIDTH+separation.x
+
+func _get_total_width():
+	var max_width=max(separation.x*(row_size-1),0)+row_size*Constants.CARD_WIDTH
+	
+	var total_offset=max(separation.x*(cards.size()-1),0)
+	var total_width=cards.size()*Constants.CARD_WIDTH+total_offset
+	
+	if row_size>0 and total_width>max_width:
+		return max_width
+	else:
+		return total_width

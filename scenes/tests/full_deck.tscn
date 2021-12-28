@@ -12,6 +12,7 @@ script = ExtResource( 1 )
 visible = false
 
 [node name="CardStack" parent="." instance=ExtResource( 2 )]
-position = Vector2( 524, 331 )
+position = Vector2( 515, 82 )
+row_size = 4
 
 [node name="Camera" parent="." instance=ExtResource( 4 )]
