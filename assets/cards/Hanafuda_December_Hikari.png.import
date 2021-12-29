@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Hanafuda_August_Kasu_2.svg.png-8f97e62cf511152bb31c5b1ddbd4f032.stex"
+path="res://.import/Hanafuda_December_Hikari.png-083108f55824273212ba55e52a131269.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/Hanafuda_August_Kasu_2.svg.png"
-dest_files=[ "res://.import/Hanafuda_August_Kasu_2.svg.png-8f97e62cf511152bb31c5b1ddbd4f032.stex" ]
+source_file="res://assets/cards/Hanafuda_December_Hikari.png"
+dest_files=[ "res://.import/Hanafuda_December_Hikari.png-083108f55824273212ba55e52a131269.stex" ]
 
 [params]
 
