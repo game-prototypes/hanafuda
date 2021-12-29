@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://entities/card/card_resource.gd" type="Script" id=1]
+[ext_resource path="res://assets/cards/Hanafuda_July_Tanzaku.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+id = 26
+month = 6
+type = 2
+sprite = ExtResource( 2 )
