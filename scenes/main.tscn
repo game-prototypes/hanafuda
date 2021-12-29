@@ -12,21 +12,30 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="PlayerStack" parent="." instance=ExtResource( 1 )]
-position = Vector2( 514, 492 )
-
 [node name="OponentStack" parent="." instance=ExtResource( 1 )]
-position = Vector2( 513, 41 )
+position = Vector2( 513, -57 )
 card_orientation = 1
 selectable = false
 
 [node name="Table" parent="." instance=ExtResource( 1 )]
-position = Vector2( 514, 272 )
+position = Vector2( 514, 206 )
+row_size = 4
 
 [node name="Deck" parent="." instance=ExtResource( 2 )]
 position = Vector2( 891, 195 )
 
 [node name="Camera" parent="." instance=ExtResource( 4 )]
+zoom = Vector2( 2, 2 )
 
 [node name="Player" type="Node" parent="."]
 script = ExtResource( 5 )
+
+[node name="PlayerStack" parent="Player" instance=ExtResource( 1 )]
+position = Vector2( 514, 753 )
+
+[node name="PlayerPointStack" parent="Player" instance=ExtResource( 1 )]
+position = Vector2( -320, 572 )
+selectable = false
+
+[connection signal="card_selected" from="Table" to="Player" method="_on_card_selected"]
+[connection signal="card_selected" from="Player/PlayerStack" to="Player" method="_on_card_selected"]

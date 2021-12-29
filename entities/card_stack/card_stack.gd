@@ -16,6 +16,8 @@ var cards:Array = []
 
 var selected_card
 
+signal card_selected(card)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,7 +33,21 @@ func add_card(card: Card) -> void:
 	cards.append(card)
 	_draw_cards()
 	card.connect("on_click", self, "_on_card_click")
-	
+
+func remove_card(card: Card) -> void:
+	card.disconnect("on_click", self, "_on_card_click")
+	var card_position=cards.find(card)
+	assert(card_position>=0, "Card not found")
+	cards.remove(card_position)
+	$Cards.remove_child(card)
+	_draw_cards()
+
+
+func deselect_card() -> void:
+	if selected_card != null:
+		selected_card.show_outline(false)
+		selected_card=null
+
 
 func _draw_cards():
 	var total_width=_get_total_width()
@@ -63,15 +79,14 @@ func _get_total_width():
 
 
 func _on_card_click(card:Card, button_index:int):
-	if selectable:
+	if selectable and can_select():
 		if selected_card==card:
-			_deselect_card()
+			deselect_card()
 		else:
-			_deselect_card()
+			deselect_card()
 			selected_card=card
 			card.show_outline(true)
+			emit_signal("card_selected", card)
 
-func _deselect_card() -> void:
-	if selected_card != null:
-		selected_card.show_outline(false)
-		selected_card=null
+func can_select()->bool:
+	return Global.turn == Global.Turn.Player

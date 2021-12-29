@@ -45,6 +45,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Constants="*res://autoload/constants.gd"
+Global="*res://autoload/global.gd"
 
 [debug]
 
