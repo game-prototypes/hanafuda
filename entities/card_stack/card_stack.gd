@@ -10,8 +10,11 @@ enum CardFace {
 export var separation:Vector2=Vector2(10.0, 5.0)
 export var row_size:int=0 # 0 means no rows
 export(CardFace) var card_orientation:int = CardFace.UP
+export(bool) var selectable:bool=true
 
 var cards:Array = []
+
+var selected_card
 
 
 # Called when the node enters the scene tree for the first time.
@@ -59,5 +62,16 @@ func _get_total_width():
 		return total_width
 
 
-func _on_card_click(button_index:int):
-	print("Button clicked", button_index)
+func _on_card_click(card:Card, button_index:int):
+	if selectable:
+		if selected_card==card:
+			_deselect_card()
+		else:
+			_deselect_card()
+			selected_card=card
+			card.show_outline(true)
+
+func _deselect_card() -> void:
+	if selected_card != null:
+		selected_card.show_outline(false)
+		selected_card=null

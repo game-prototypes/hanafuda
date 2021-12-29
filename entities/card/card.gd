@@ -3,7 +3,7 @@ extends Node2D
 
 export(Texture) var back_texture: Texture
 
-signal on_click(button_index)
+signal on_click(card, button_index)
 
 onready var sprite:Sprite=$Sprite
 
@@ -17,6 +17,9 @@ func _ready():
 func init_card(card_info:CardResource)->void:
 	assert(info == null, "Can't init card twice")
 	info=card_info
+
+func show_outline(value: bool)->void:
+	$Outline.visible=value
 
 
 func _set_texture()->void:
@@ -32,4 +35,4 @@ func _set_texture()->void:
 
 
 func _on_click(button_index):
-	emit_signal("on_click", button_index)
+	emit_signal("on_click", self, button_index)
