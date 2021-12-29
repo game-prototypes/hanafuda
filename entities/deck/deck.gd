@@ -7,7 +7,7 @@ export(Array,Resource) var cards=[]
 var cards_left:Array
 
 func _ready():
-	#Assert deck is ok
+	#Assert deck is ok (ids and months)
 	pass
 
 func reset():
