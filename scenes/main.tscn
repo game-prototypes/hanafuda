@@ -38,4 +38,5 @@ position = Vector2( -320, 572 )
 selectable = false
 
 [connection signal="card_selected" from="Table" to="Player" method="_on_card_selected"]
+[connection signal="cards_captured" from="Player" to="." method="_on_player_cards_captured"]
 [connection signal="card_selected" from="Player/PlayerStack" to="Player" method="_on_card_selected"]

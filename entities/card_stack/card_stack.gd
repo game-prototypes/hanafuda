@@ -48,6 +48,8 @@ func deselect_card() -> void:
 		selected_card.show_outline(false)
 		selected_card=null
 
+func set_selectable(is_selectable:bool)->void:
+	selectable=is_selectable
 
 func _draw_cards():
 	var total_width=_get_total_width()
@@ -79,7 +81,7 @@ func _get_total_width():
 
 
 func _on_card_click(card:Card, button_index:int):
-	if selectable and can_select():
+	if can_select():
 		if selected_card==card:
 			deselect_card()
 		else:
@@ -89,4 +91,4 @@ func _on_card_click(card:Card, button_index:int):
 			emit_signal("card_selected", card)
 
 func can_select()->bool:
-	return Global.turn == Global.Turn.Player
+	return selectable
