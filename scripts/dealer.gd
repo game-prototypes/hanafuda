@@ -15,8 +15,10 @@ func deal(player_stack: CardStack, oponent_stack:CardStack, table:CardStack):
 	deal_cards_to_stack(oponent_stack, 4)
 	deal_cards_to_stack(table, 4)
 	
-func deal_cards_to_stack(stack: CardStack, number: int) ->void:
+func deal_cards_to_stack(stack: CardStack, number: int) -> void:
 	for _i in range(number):
-		var card = deck.get_card()
+		var card = take_card()
 		stack.add_card(card)
-	
+
+func take_card() -> Card:
+	return deck.get_card()
