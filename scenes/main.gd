@@ -35,9 +35,10 @@ func next_phase():
 		
 	
 
-func _on_player_cards_captured(player):
+func _on_player_action(player):
 	var phase=next_phase()
 	player.on_new_phase(phase)
 	if phase==Global.TurnPhase.DeckMatching:
 		var card = dealer.take_card()
 		player.set_deck_card(card)
+			
