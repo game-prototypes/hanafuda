@@ -29,7 +29,13 @@ func _on_card_selected(card): # Called for any card (table or stack) selected
 		TurnPhase.HandMatching:
 			var table_card=table.selected_card
 			var player_card=player_stack.selected_card
-			if table_card!=null and player_card!=null:
+			
+			if player_card!=null and not _can_pair_hand():
+				_deselect_cards()
+				_discard(player_card)
+				_set_deck_phase()
+				
+			elif table_card!=null and player_card!=null:
 				_deselect_cards()
 				if table_card.info.month==player_card.info.month:
 					_capture_card(table, table_card)
@@ -50,8 +56,13 @@ func _on_card_selected(card): # Called for any card (table or stack) selected
 func _set_hand_phase()->void:
 	phase=TurnPhase.HandMatching
 	player_stack.set_selectable(true)
-	table.set_selectable(true)
-	# TODO: check if can pair
+	if _can_pair_hand():
+		table.set_selectable(true)
+	else:
+		table.set_selectable(false)
+
+func _can_pair_hand() -> bool:
+	return PairChecker.can_pair(player_stack.cards, table.cards)
 
 func _set_deck_phase()->void:
 	phase=TurnPhase.DeckMatching
@@ -67,6 +78,10 @@ func _deselect_cards():
 func _capture_card(from_stack:CardStack, card: Card)->void:
 	from_stack.remove_card(card)
 	player_point_stack.add_card(card)
+
+func _discard(card: Card)->void:
+	player_stack.remove_card(card)
+	table.add_card(card)
 	
 func _end_turn():
 	player_stack.set_selectable(false)
