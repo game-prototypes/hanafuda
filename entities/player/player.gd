@@ -21,10 +21,15 @@ onready var player_deck_card=$DeckCardPlaceholder
 
 signal turn_finished(player)
 
+func game_setup(_table:CardStack, _deck:Deck) -> void:
+	assert(table==null and deck==null, "Player is already set")
+	table=_table
+	deck=_deck
+
 func begin_turn():
+	assert(current_turn==false, "Current turn already true")
 	current_turn=true
 	_set_hand_phase()
-	
 
 # Actions
 # Actions are public methods that performs an action or asserts if it is not valid
@@ -54,6 +59,8 @@ func capture_deck_card(table_card: Card) -> void:
 	player_deck_card.remove_card()
 	captured_cards.add_card(deck_card)
 	_finish_turn()
+
+####################
 
 func _set_hand_phase()->void:
 	phase=TurnPhase.HandMatching
@@ -108,7 +115,3 @@ func _get_table_cards_to_capture(player_card: Card, table_card:Card)->Array:
 		return hiki
 	else:
 		return [table_card]
-
-
-func _on_card_selected(card):
-	pass # Replace with function body.

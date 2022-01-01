@@ -1,5 +1,10 @@
 extends Player
 
+
+func game_setup(_table:CardStack, _deck:Deck) -> void:
+	.game_setup(_table, _deck)
+	table.connect("card_selected", self, "_on_card_selected")
+
 ##### Behaviour: TODO: move to separate class
 func _on_card_selected(card): # Called for any card (table or stack) selected
 	assert(Global.turn==Global.Turn.Player, "Action on invalid turn")

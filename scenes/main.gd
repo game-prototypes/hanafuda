@@ -18,8 +18,7 @@ func _enter_tree():
 func _ready():
 	players=get_tree().get_nodes_in_group("player")
 	for player in players:
-		player.table=table
-		player.deck=deck
+		player.game_setup(table, deck)
 		player.connect("turn_finished", self, "_on_player_turn_finished")
 
 	dealer=Dealer.new(deck)
