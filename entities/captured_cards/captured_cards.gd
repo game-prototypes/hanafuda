@@ -7,10 +7,11 @@ onready var plain_cards:CardStack=$PlainCards
 
 func add_card(card:Card):
 	var card_info=card.info
+	print(card_info.type)
 	match card_info.type:
 			Constants.CardType.PLAIN:
 				plain_cards.add_card(card)
-			[Constants.CardType.POETRY_RIBBON,Constants.CardType.PLAIN_RIBBON,Constants.CardType.BLUE_RIBBON]:
+			Constants.CardType.POETRY_RIBBON,Constants.CardType.PLAIN_RIBBON,Constants.CardType.BLUE_RIBBON:
 				ribbon_cards.add_card(card)
 			Constants.CardType.LIGHT:
 				light_cards.add_card(card)
