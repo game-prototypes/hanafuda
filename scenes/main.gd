@@ -27,6 +27,7 @@ func _ready():
 	_begin_player_turn(0)
 
 func _begin_player_turn(index:int):
+	prints("Player", index, "Turn")
 	players[index].begin_turn()
 
 func _on_player_turn_finished(player):
