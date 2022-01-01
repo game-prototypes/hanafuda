@@ -1,4 +1,6 @@
+class_name Player
 extends Node
+# Player contains a player state and valid actions
 
 var PairChecker = preload("res://scripts/pair_checker.gd")
 
@@ -8,6 +10,7 @@ enum TurnPhase {
 }
 
 var phase: int = TurnPhase.HandMatching
+var current_turn: bool = false
 
 var table:CardStack # Set by main TODO: improve
 var deck:Deck # Set by main 
@@ -19,47 +22,38 @@ onready var player_deck_card=$DeckCardPlaceholder
 signal turn_finished(player)
 
 func begin_turn():
+	current_turn=true
 	_set_hand_phase()
-
-func _on_card_selected(card): # Called for any card (table or stack) selected
-	assert(Global.turn==Global.Turn.Player, "Action on invalid turn")
 	
-	match phase:
-		TurnPhase.HandMatching:
-			var table_card=table.selected_card
-			var player_card=player_stack.selected_card
-			
-			if player_card!=null and not _can_pair_hand():
-				_deselect_cards()
-				_discard(player_card)
-				_set_deck_phase()
-				
-			elif table_card!=null and player_card!=null:
-				_deselect_cards()
-				if table_card.info.month==player_card.info.month:
-					var hiki=PairChecker.get_hiki(player_card, table.cards)
-					if hiki!=null:
-						for hiki_card in hiki:
-							_capture_card(table, hiki_card)
-					else:	
-						_capture_card(table, table_card)
-					_capture_card(player_stack, player_card)
-					_set_deck_phase()
-		TurnPhase.DeckMatching:
-			var table_card=table.selected_card
-			assert(player_deck_card.card != null, "Deck card not available")
-			assert(table_card != null, "Table card not available")
-			_deselect_cards()
-			if PairChecker.same_month(table_card, player_deck_card.card):
-				var hiki=PairChecker.get_hiki(player_deck_card.card, table.cards)
-				if hiki!=null:
-					for hiki_card in hiki:
-						_capture_card(table, hiki_card)
-				else:				
-					_capture_card(table, table_card)
-				var deck_card=player_deck_card.remove_card()
-				captured_cards.add_card(deck_card)
-				_end_turn()
+
+# Actions
+# Actions are public methods that performs an action or asserts if it is not valid
+
+func discard(card: Card) -> void:
+	_assert_action(TurnPhase.HandMatching)
+	player_stack.remove_card(card)
+	table.add_card(card)
+	_set_deck_phase()
+
+func capture_hand_card(hand_card: Card, table_card: Card) -> void:
+	_assert_action(TurnPhase.HandMatching)
+	var card_from_table=_get_table_cards_to_capture(hand_card, table_card)
+	for card_to_capture in card_from_table:
+		_capture_card_from_stack(table, card_to_capture)
+	_capture_card_from_stack(player_stack, hand_card)
+	_set_deck_phase()	
+
+func capture_deck_card(table_card: Card) -> void:
+	_assert_action(TurnPhase.DeckMatching)
+	var deck_card=player_deck_card.card
+	assert(deck_card != null, "Deck card not available")
+	
+	var card_from_table=_get_table_cards_to_capture(deck_card, table_card)
+	for card_to_capture in card_from_table:
+		_capture_card_from_stack(table, card_to_capture)
+	player_deck_card.remove_card()
+	captured_cards.add_card(deck_card)
+	_finish_turn()
 
 func _set_hand_phase()->void:
 	phase=TurnPhase.HandMatching
@@ -79,28 +73,42 @@ func _set_deck_phase()->void:
 	
 	_take_deck_card()
 
-func _deselect_cards():
-	table.deselect_card()
-	player_stack.deselect_card()
-
-func _capture_card(from_stack:CardStack, card: Card)->void:
-	from_stack.remove_card(card)
-	captured_cards.add_card(card)
-
-func _discard(card: Card)->void:
-	player_stack.remove_card(card)
-	table.add_card(card)
-	
-func _end_turn():
-	player_stack.set_selectable(false)
-	table.set_selectable(false)
-	emit_signal("turn_finished", self)
-	
-func _take_deck_card():
+func _take_deck_card() -> void:
+	_assert_action(TurnPhase.DeckMatching)
 	var card=deck.take_card()
 	
 	if PairChecker.can_pair([card], table.cards):
 		player_deck_card.add_card(card)  
 	else:
 		table.add_card(card)
-		_end_turn()
+		_finish_turn()
+
+func _deselect_cards():
+	table.deselect_card()
+	player_stack.deselect_card()
+
+func _capture_card_from_stack(from_stack:CardStack, card: Card)->void:
+	from_stack.remove_card(card)
+	captured_cards.add_card(card)
+	
+func _finish_turn():
+	player_stack.set_selectable(false)
+	table.set_selectable(false)
+	current_turn=false
+	emit_signal("turn_finished", self)
+
+func _assert_action(expected_phase: int):
+	assert(current_turn and phase==expected_phase, "Invalid action")
+
+func _get_table_cards_to_capture(player_card: Card, table_card:Card)->Array:
+	assert(PairChecker.same_month(player_card, table_card), "Invalid pair")
+	var hiki=PairChecker.get_hiki(player_card, table.cards)
+	if hiki!=null:
+		assert(hiki.size()==3, "Invalid Hiki")
+		return hiki
+	else:
+		return [table_card]
+
+
+func _on_card_selected(card):
+	pass # Replace with function body.
