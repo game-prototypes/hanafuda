@@ -21,4 +21,4 @@ func deal_cards_to_stack(stack: CardStack, number: int) -> void:
 		stack.add_card(card)
 
 func take_card() -> Card:
-	return deck.get_card()
+	return deck.take_card()

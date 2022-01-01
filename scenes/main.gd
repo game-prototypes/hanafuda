@@ -13,32 +13,26 @@ signal next_turn(turn)
 signal next_phase(phase, turn)
 
 
+var players=[]
+
 func _enter_tree():
 	randomize()
 
 func _ready():
 	$Player.table=table
+	$Player.deck=deck
+	players.append($Player)
 	dealer=Dealer.new(deck)
 	dealer.deal(player_stack, oponent_stack, table)
+	_begin_player_turn(0)
 
+func _begin_player_turn(index:int):
+	players[index].begin_turn()
 
-# TODO: Move Gameplay loop to a separate node/class
-
-func next_phase():
-	if Global.is_last_phase():
-		var turn=Global.next_turn()
-		emit_signal("next_turn",turn)
-	else:
-		var phase=Global.next_phase()
-		emit_signal("next_phase", Global.turn, phase)
-	return Global.phase
-		
-	
-
-func _on_player_action(player):
-	var phase=next_phase()
-	player.on_new_phase(phase)
-	if phase==Global.TurnPhase.DeckMatching:
-		var card = dealer.take_card()
-		player.set_deck_card(card)
-			
+func _on_player_turn_finished(player):
+	var index=players.find(player)
+	assert(index!=-1, "Player not found")
+	index+=1
+	if index==players.size():
+		index=0
+	_begin_player_turn(index)

@@ -31,4 +31,4 @@ zoom = Vector2( 2, 2 )
 position = Vector2( 503, 646 )
 
 [connection signal="card_selected" from="Table" to="Player" method="_on_card_selected"]
-[connection signal="player_action" from="Player" to="." method="_on_player_action"]
+[connection signal="turn_finished" from="Player" to="." method="_on_player_turn_finished"]

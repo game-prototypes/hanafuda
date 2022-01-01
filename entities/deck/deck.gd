@@ -19,7 +19,7 @@ func size()->int:
 func shuffle()->void:
 	cards_left.shuffle()
 
-func get_card() -> Card:
+func take_card() -> Card:
 	assert(size() > 0, "Deck empty")
 	var card_info:CardResource=cards_left.pop_front()
 	var card:Card=card_scene.instance()
