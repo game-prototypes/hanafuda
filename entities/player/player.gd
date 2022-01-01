@@ -51,14 +51,14 @@ func set_hand_phase()->void:
 	phase=TurnPhase.HandMatching
 	player_stack.set_selectable(true)
 	table.set_selectable(true)
+	# TODO: check if can pair
 
 func set_deck_phase()->void:
 	phase=TurnPhase.DeckMatching
 	player_stack.set_selectable(false)
 	table.set_selectable(true)
 	
-	var card=deck.take_card()
-	set_deck_card(card)
+	_take_deck_card()
 
 func deselect_cards():
 	table.deselect_card()
@@ -74,7 +74,9 @@ func end_turn():
 	emit_signal("turn_finished", self)
 	
 
-func set_deck_card(card:Card):
+func _take_deck_card():
+	var card=deck.take_card()
+	
 	if PairChecker.can_pair([card], table.cards):
 		player_deck_card.add_card(card)  
 	else:
