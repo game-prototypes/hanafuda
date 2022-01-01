@@ -38,7 +38,12 @@ func _on_card_selected(card): # Called for any card (table or stack) selected
 			elif table_card!=null and player_card!=null:
 				_deselect_cards()
 				if table_card.info.month==player_card.info.month:
-					_capture_card(table, table_card)
+					var hiki=PairChecker.get_hiki(player_card, table.cards)
+					if hiki!=null:
+						for hiki_card in hiki:
+							_capture_card(table, hiki_card)
+					else:	
+						_capture_card(table, table_card)
 					_capture_card(player_stack, player_card)
 					_set_deck_phase()
 		TurnPhase.DeckMatching:
@@ -47,11 +52,15 @@ func _on_card_selected(card): # Called for any card (table or stack) selected
 			assert(table_card != null, "Table card not available")
 			_deselect_cards()
 			if PairChecker.same_month(table_card, player_deck_card.card):
-				_capture_card(table, table_card)
+				var hiki=PairChecker.get_hiki(player_deck_card.card, table.cards)
+				if hiki!=null:
+					for hiki_card in hiki:
+						_capture_card(table, hiki_card)
+				else:				
+					_capture_card(table, table_card)
 				var deck_card=player_deck_card.remove_card()
 				player_point_stack.add_card(deck_card)
 				_end_turn()
-				# TODO: check for 3 cards with same month in table
 
 func _set_hand_phase()->void:
 	phase=TurnPhase.HandMatching
