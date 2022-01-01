@@ -9,9 +9,6 @@ onready var table:CardStack=$Table
 
 var dealer
 
-signal next_turn(turn)
-signal next_phase(phase, turn)
-
 
 var players=[]
 

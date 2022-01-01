@@ -1,4 +1,3 @@
-class_name Player
 extends Node
 
 var PairChecker = preload("res://scripts/pair_checker.gd")
@@ -14,7 +13,7 @@ var table:CardStack # Set by main TODO: improve
 var deck:Deck # Set by main 
 
 onready var player_stack:CardStack=$PlayerStack
-onready var player_point_stack:CardStack=$PlayerPointStack
+onready var captured_cards=$CapturedCards
 onready var player_deck_card=$DeckCardPlaceholder
 
 signal turn_finished(player)
@@ -59,7 +58,7 @@ func _on_card_selected(card): # Called for any card (table or stack) selected
 				else:				
 					_capture_card(table, table_card)
 				var deck_card=player_deck_card.remove_card()
-				player_point_stack.add_card(deck_card)
+				captured_cards.add_card(deck_card)
 				_end_turn()
 
 func _set_hand_phase()->void:
@@ -86,7 +85,7 @@ func _deselect_cards():
 
 func _capture_card(from_stack:CardStack, card: Card)->void:
 	from_stack.remove_card(card)
-	player_point_stack.add_card(card)
+	captured_cards.add_card(card)
 
 func _discard(card: Card)->void:
 	player_stack.remove_card(card)

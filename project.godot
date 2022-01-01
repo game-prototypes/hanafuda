@@ -28,18 +28,12 @@ _global_script_classes=[ {
 "class": "Deck",
 "language": "GDScript",
 "path": "res://entities/deck/deck.gd"
-}, {
-"base": "Node",
-"class": "Player",
-"language": "GDScript",
-"path": "res://entities/player/player.gd"
 } ]
 _global_script_class_icons={
 "Card": "",
 "CardResource": "",
 "CardStack": "",
-"Deck": "",
-"Player": ""
+"Deck": ""
 }
 
 [application]
