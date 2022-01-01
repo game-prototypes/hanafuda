@@ -4,7 +4,7 @@
 [ext_resource path="res://entities/deck/deck.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/main.gd" type="Script" id=3]
 [ext_resource path="res://entities/camera/main_camera.tscn" type="PackedScene" id=4]
-[ext_resource path="res://entities/player/player.gd" type="Script" id=5]
+[ext_resource path="res://entities/player/player.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 3 )
@@ -27,16 +27,8 @@ position = Vector2( 891, 195 )
 [node name="Camera" parent="." instance=ExtResource( 4 )]
 zoom = Vector2( 2, 2 )
 
-[node name="Player" type="Node" parent="."]
-script = ExtResource( 5 )
-
-[node name="PlayerStack" parent="Player" instance=ExtResource( 1 )]
-position = Vector2( 514, 753 )
-
-[node name="PlayerPointStack" parent="Player" instance=ExtResource( 1 )]
-position = Vector2( -320, 572 )
-selectable = false
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( 503, 646 )
 
 [connection signal="card_selected" from="Table" to="Player" method="_on_card_selected"]
 [connection signal="cards_captured" from="Player" to="." method="_on_player_cards_captured"]
-[connection signal="card_selected" from="Player/PlayerStack" to="Player" method="_on_card_selected"]

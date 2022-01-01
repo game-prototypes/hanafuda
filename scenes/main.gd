@@ -31,8 +31,13 @@ func next_phase():
 	else:
 		var phase=Global.next_phase()
 		emit_signal("next_phase", Global.turn, phase)
+	return Global.phase
 		
 	
 
-func _on_player_cards_captured():
-	next_phase()
+func _on_player_cards_captured(player):
+	var phase=next_phase()
+	player.on_new_phase(phase)
+	if phase==Global.TurnPhase.DeckMatching:
+		var card = dealer.take_card()
+		player.set_deck_card(card)

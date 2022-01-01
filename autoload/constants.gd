@@ -3,6 +3,10 @@ extends Node
 const CARD_WIDTH:=125.0
 const CARD_HEIGHT:=204.9
 
+enum CardFace {
+	UP,
+	DOWN
+}
 
 enum Month {
 	JANUARY,
