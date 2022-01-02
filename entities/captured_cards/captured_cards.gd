@@ -7,7 +7,6 @@ onready var plain_cards:CardStack=$PlainCards
 
 func add_card(card:Card):
 	var card_info=card.info
-	print(card_info.type)
 	match card_info.type:
 			Constants.CardType.PLAIN:
 				plain_cards.add_card(card)

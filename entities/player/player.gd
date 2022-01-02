@@ -60,49 +60,61 @@ func capture_deck_card(table_card: Card) -> void:
 	captured_cards.add_card(deck_card)
 	_finish_turn()
 
-####################
-
+func discard_deck_card():
+	_assert_action(TurnPhase.DeckMatching)
+	var deck_card=player_deck_card.card
+	player_deck_card.remove_card() # FIXME: ORDER IS IMPORTANT (remove->add)
+	table.add_card(deck_card)
+	
+## Lifecycle events 
 func _set_hand_phase()->void:
+	print("Hand Phase")	
 	phase=TurnPhase.HandMatching
-	player_stack.set_selectable(true)
-	if _can_pair_hand():
-		table.set_selectable(true)
+	_on_hand_phase()
+		
+func _set_deck_phase()->void:
+	print("Deck Phase")
+	phase=TurnPhase.DeckMatching
+	var card=_take_deck_card()
+		
+	if PairChecker.can_pair([card], table.cards):
+		_on_deck_phase()
 	else:
-		table.set_selectable(false)
+		discard_deck_card()
+		_finish_turn()
+	
+func _finish_turn():
+	print("Finish Turn")
+	current_turn=false
+	_on_finish_turn()
+	emit_signal("turn_finished", self)
+
+## Behaviour Hooks
+func _on_finish_turn():
+	assert(true, "Behaviour Not Implements")
+
+func _on_hand_phase()->void:
+	assert(true, "Behaviour Not Implements")
+
+func _on_deck_phase()->void:
+	assert(true, "Behaviour Not Implements")
+
+#####
+
 
 func _can_pair_hand() -> bool:
 	return PairChecker.can_pair(player_stack.cards, table.cards)
 
-func _set_deck_phase()->void:
-	phase=TurnPhase.DeckMatching
-	player_stack.set_selectable(false)
-	table.set_selectable(true)
-	
-	_take_deck_card()
-
-func _take_deck_card() -> void:
+func _take_deck_card() -> Card:
 	_assert_action(TurnPhase.DeckMatching)
 	var card=deck.take_card()
 	
-	if PairChecker.can_pair([card], table.cards):
-		player_deck_card.add_card(card)  
-	else:
-		table.add_card(card)
-		_finish_turn()
-
-func _deselect_cards():
-	table.deselect_card()
-	player_stack.deselect_card()
+	player_deck_card.add_card(card) 
+	return card
 
 func _capture_card_from_stack(from_stack:CardStack, card: Card)->void:
 	from_stack.remove_card(card)
 	captured_cards.add_card(card)
-	
-func _finish_turn():
-	player_stack.set_selectable(false)
-	table.set_selectable(false)
-	current_turn=false
-	emit_signal("turn_finished", self)
 
 func _assert_action(expected_phase: int):
 	assert(current_turn and phase==expected_phase, "Invalid action")
@@ -115,3 +127,6 @@ func _get_table_cards_to_capture(player_card: Card, table_card:Card)->Array:
 		return hiki
 	else:
 		return [table_card]
+
+
+	

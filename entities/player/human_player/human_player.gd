@@ -28,3 +28,22 @@ func _on_card_selected(card): # Called for any card (table or stack) selected
 			if PairChecker.same_month(table_card, player_deck_card.card):
 				capture_deck_card(table_card)
 		
+func _on_hand_phase()->void:
+	player_stack.set_selectable(true)
+	if _can_pair_hand():
+		table.set_selectable(true)
+	else:
+		table.set_selectable(false)
+
+func _on_deck_phase()->void:
+	player_stack.set_selectable(false)
+	table.set_selectable(true)
+	
+func _on_finish_turn():
+	player_stack.set_selectable(false)
+	table.set_selectable(false)
+
+func _deselect_cards():
+	table.deselect_card()
+	player_stack.deselect_card()
+	
