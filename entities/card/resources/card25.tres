@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource( 1 )
-id = 26
+id = 25
 month = 6
 type = 5
 sprite = ExtResource( 2 )

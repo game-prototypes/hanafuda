@@ -1,11 +1,17 @@
 extends Reference
 
 const RAINMAN_ID = 41
+const INO_SHIKA_CHO_IDS = [25, 37, 21]
 
-
+# TODO: fixme
 static func tally_points(cards: Array,koi_koi: bool) -> int:
-	return light_cards_points(cards)
-	
+	var points = light_cards_points(cards)+ plain_card_points(cards) +animal_card_points(cards)+ribbon_card_points(cards)
+	if points>=7:
+		points*=2
+	if koi_koi:
+		points*=2
+	return points
+		
 
 static func filter_cards_by_type(cards:Array, type:int)->Array:
 	var filtered_cards=[]
@@ -38,3 +44,28 @@ static func has_card_with_id(cards:Array, id: int) -> bool:
 		if card.info.id==id:
 			return true
 	return false
+
+static func plain_card_points(cards: Array) -> int:
+	var plain_cards:=filter_cards_by_type(cards, Constants.CardType.PLAIN)
+	var count=plain_cards.size()
+	return int(max(0, count-9))
+
+static func animal_card_points(cards: Array) -> int:
+	var animal_cards:=filter_cards_by_type(cards, Constants.CardType.ANIMAL)
+	var count=animal_cards.size()
+	if not has_ino_shika_cho(cards):
+		return int(max(0, count-9))
+	
+	else:
+		return 5+int(max(0, count-3))
+	
+static func has_ino_shika_cho(cards:Array) -> bool:
+	for id in INO_SHIKA_CHO_IDS:
+		if not has_card_with_id(cards, id):
+			return false
+	return true
+
+static func ribbon_card_points(cards: Array) -> int:
+	return 0
+
+# TODO: extra combinations (sake)
