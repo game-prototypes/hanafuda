@@ -16,3 +16,11 @@ func add_card(card:Card):
 				light_cards.add_card(card)
 			Constants.CardType.ANIMAL:
 				animal_cards.add_card(card)
+
+func get_cards()->Array:
+	var result_array=[]
+	result_array.append_array(light_cards.get_cards())
+	result_array.append_array(animal_cards.get_cards())
+	result_array.append_array(ribbon_cards.get_cards())
+	result_array.append_array(plain_cards.get_cards())
+	return result_array

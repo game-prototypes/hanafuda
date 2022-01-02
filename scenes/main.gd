@@ -1,6 +1,7 @@
 extends Node2D
 
 var Dealer = preload("res://scripts/dealer.gd")
+var PointsCalculator = preload("res://scripts/points_calculator.gd")
 
 onready var deck:Deck=$Deck
 onready var oponent_stack:CardStack=$OponentStack
@@ -29,6 +30,7 @@ func _begin_player_turn(index:int):
 	players[index].begin_turn()
 
 func _on_player_turn_finished(player):
+	prints("Points", PointsCalculator.tally_points(player.get_captured_cards(), false))
 	var index=players.find(player)
 	assert(index!=-1, "Player not found")
 	index+=1

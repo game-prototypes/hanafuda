@@ -34,6 +34,8 @@ func begin_turn():
 func add_card(card:Card):
 	player_stack.add_card(card)
 
+func get_captured_cards() -> Array:
+	return captured_cards.get_cards()
 # Actions
 # Actions are public methods that performs an action or asserts if it is not valid
 

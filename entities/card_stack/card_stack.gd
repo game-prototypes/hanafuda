@@ -23,6 +23,9 @@ signal card_selected(card)
 func _ready():
 	_draw_cards()
 
+func get_cards():
+	return cards
+
 func add_card(card: Card) -> void:
 	if card_orientation==CardFace.UP:
 		card.faced_up=true
