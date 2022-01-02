@@ -1,6 +1,5 @@
 extends Player
 
-
 func game_setup(_table:CardStack, _deck:Deck) -> void:
 	.game_setup(_table, _deck)
 	table.connect("card_selected", self, "_on_card_selected")

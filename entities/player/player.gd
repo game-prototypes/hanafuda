@@ -31,6 +31,9 @@ func begin_turn():
 	current_turn=true
 	_set_hand_phase()
 
+func add_card(card:Card):
+	player_stack.add_card(card)
+
 # Actions
 # Actions are public methods that performs an action or asserts if it is not valid
 
