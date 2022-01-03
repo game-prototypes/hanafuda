@@ -6,8 +6,6 @@ const INO_SHIKA_CHO_IDS = [25, 37, 21]
 # TODO: fixme
 static func tally_points(cards: Array,koi_koi: bool) -> int:
 	var points = light_cards_points(cards)+ plain_card_points(cards) +animal_card_points(cards)+ribbon_card_points(cards)
-	if points>=7:
-		points*=2
 	if koi_koi:
 		points*=2
 	return points
