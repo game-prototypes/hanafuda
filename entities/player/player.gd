@@ -65,7 +65,7 @@ func capture_deck_card(table_card: Card) -> void:
 	captured_cards.add_card(deck_card)
 	_finish_turn()
 
-func discard_deck_card():
+func _discard_deck_card():
 	_assert_action(TurnPhase.DeckMatching)
 	var deck_card=player_deck_card.card
 	player_deck_card.remove_card() # FIXME: ORDER IS IMPORTANT (remove->add)
@@ -85,7 +85,7 @@ func _set_deck_phase()->void:
 	if PairChecker.can_pair([card], table.cards):
 		_on_deck_phase(card)
 	else:
-		discard_deck_card()
+		_discard_deck_card()
 		_finish_turn()
 	
 func _finish_turn():

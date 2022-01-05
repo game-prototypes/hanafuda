@@ -10,9 +10,19 @@ func match_hand_card():
 	var table_cards=table.get_cards()
 	var hand_cards=hand.get_cards()
 	var pair_to_capture=_select_pair(hand_cards, table_cards)
-	#TODO: if no pair found
+	
 	if pair_to_capture!=null:
 		capture_hand_card(pair_to_capture[0], pair_to_capture[1])
+	else:
+		_discard_lowest_card()
+
+func _discard_lowest_card():
+	var hand_cards=hand.get_cards()
+	var lowest=hand_cards[0]
+	for card in hand_cards:
+		if get_card_points(card)<get_card_points(lowest):
+			lowest=card
+	discard(lowest)
 
 func match_deck_card(deck_card:Card):
 	var pair_to_capture=_select_pair([deck_card], table.cards)
@@ -20,7 +30,6 @@ func match_deck_card(deck_card:Card):
 	capture_deck_card(pair_to_capture[1])
 
 func calculate_pair_points(pair:Array) -> int:
-	# TODO: check hiki
 	return get_card_points(pair[0])+get_card_points(pair[1])
 
 func get_card_points(card:Card)->int:

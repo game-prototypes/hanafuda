@@ -30,6 +30,7 @@ func _begin_player_turn(index:int):
 
 func _on_player_turn_finished(player):
 	prints("Points", PointsCalculator.tally_points(player.get_captured_cards(), false))
+	#If new combination, ask for koi-koi
 	var index=players.find(player)
 	assert(index!=-1, "Player not found")
 	index+=1
