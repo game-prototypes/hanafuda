@@ -37,7 +37,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "TestSuite",
 "language": "GDScript",
-"path": "res://tests/test_suite.gd"
+"path": "res://tests/utils/suite.gd"
 } ]
 _global_script_class_icons={
 "Card": "",

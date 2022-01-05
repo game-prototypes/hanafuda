@@ -3,6 +3,7 @@ extends Player
 func game_setup(_table:CardStack, _deck:Deck) -> void:
 	.game_setup(_table, _deck)
 	table.connect("card_selected", self, "_on_card_selected")
+	hand.connect("card_selected", self, "_on_card_selected")
 
 ##### Behaviour: TODO: move to separate class
 func _on_card_selected(card): # Called for any card (table or stack) selected
@@ -11,7 +12,7 @@ func _on_card_selected(card): # Called for any card (table or stack) selected
 	match phase:
 		TurnPhase.HandMatching:
 			var table_card=table.selected_card
-			var player_card=player_stack.selected_card
+			var player_card=hand.selected_card
 			
 			if player_card!=null and not _can_pair_hand():
 				_deselect_cards()
@@ -28,21 +29,21 @@ func _on_card_selected(card): # Called for any card (table or stack) selected
 				capture_deck_card(table_card)
 		
 func _on_hand_phase()->void:
-	player_stack.set_selectable(true)
+	hand.set_selectable(true)
 	if _can_pair_hand():
 		table.set_selectable(true)
 	else:
 		table.set_selectable(false)
 
-func _on_deck_phase()->void:
-	player_stack.set_selectable(false)
+func _on_deck_phase(_card:Card)->void:
+	hand.set_selectable(false)
 	table.set_selectable(true)
 	
 func _on_finish_turn():
-	player_stack.set_selectable(false)
+	hand.set_selectable(false)
 	table.set_selectable(false)
 
 func _deselect_cards():
 	table.deselect_card()
-	player_stack.deselect_card()
+	hand.deselect_card()
 	

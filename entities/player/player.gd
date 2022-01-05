@@ -15,7 +15,7 @@ var current_turn: bool = false
 var table:CardStack # Set by main TODO: improve
 var deck:Deck # Set by main 
 
-onready var player_stack:CardStack=$PlayerStack
+onready var hand:CardStack=$Hand
 onready var captured_cards=$CapturedCards
 onready var player_deck_card=$DeckCardPlaceholder
 
@@ -32,7 +32,7 @@ func begin_turn():
 	_set_hand_phase()
 
 func add_card(card:Card):
-	player_stack.add_card(card)
+	hand.add_card(card)
 
 func get_captured_cards() -> Array:
 	return captured_cards.get_cards()
@@ -41,7 +41,7 @@ func get_captured_cards() -> Array:
 
 func discard(card: Card) -> void:
 	_assert_action(TurnPhase.HandMatching)
-	player_stack.remove_card(card)
+	hand.remove_card(card)
 	table.add_card(card)
 	_set_deck_phase()
 
@@ -50,7 +50,7 @@ func capture_hand_card(hand_card: Card, table_card: Card) -> void:
 	var card_from_table=_get_table_cards_to_capture(hand_card, table_card)
 	for card_to_capture in card_from_table:
 		_capture_card_from_stack(table, card_to_capture)
-	_capture_card_from_stack(player_stack, hand_card)
+	_capture_card_from_stack(hand, hand_card)
 	_set_deck_phase()	
 
 func capture_deck_card(table_card: Card) -> void:
@@ -83,7 +83,7 @@ func _set_deck_phase()->void:
 	var card=_take_deck_card()
 		
 	if PairChecker.can_pair([card], table.cards):
-		_on_deck_phase()
+		_on_deck_phase(card)
 	else:
 		discard_deck_card()
 		_finish_turn()
@@ -101,14 +101,14 @@ func _on_finish_turn():
 func _on_hand_phase()->void:
 	assert(true, "Behaviour Not Implements")
 
-func _on_deck_phase()->void:
+func _on_deck_phase(_card:Card)->void:
 	assert(true, "Behaviour Not Implements")
 
 #####
 
 
 func _can_pair_hand() -> bool:
-	return PairChecker.can_pair(player_stack.cards, table.cards)
+	return PairChecker.can_pair(hand.cards, table.cards)
 
 func _take_deck_card() -> Card:
 	_assert_action(TurnPhase.DeckMatching)

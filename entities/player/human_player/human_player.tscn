@@ -5,5 +5,3 @@
 
 [node name="HumanPlayer" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-
-[connection signal="card_selected" from="PlayerStack" to="." method="_on_card_selected"]
