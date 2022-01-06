@@ -57,7 +57,6 @@ config/icon="res://icon.png"
 [autoload]
 
 Constants="*res://autoload/constants.gd"
-Global="*res://autoload/global.gd"
 
 [debug]
 
@@ -67,6 +66,10 @@ gdscript/warnings/return_value_discarded=false
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
+
+[global]
+
+search=false
 
 [input]
 

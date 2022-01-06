@@ -1,5 +1,8 @@
 extends Player
 
+onready var koikoi_popup:Control=$HUD/KoiKoiPopup
+
+
 func game_setup(_table:CardStack, _deck:Deck) -> void:
 	.game_setup(_table, _deck)
 	table.connect("card_selected", self, "_on_card_selected")
@@ -7,7 +10,7 @@ func game_setup(_table:CardStack, _deck:Deck) -> void:
 
 ##### Behaviour: TODO: move to separate class
 func _on_card_selected(card): # Called for any card (table or stack) selected
-	assert(Global.turn==Global.Turn.Player, "Action on invalid turn")
+	assert(current_turn, "Invalid action")
 	
 	match phase:
 		TurnPhase.HandMatching:
@@ -46,14 +49,14 @@ func _on_finish_turn():
 func _on_koikoi_phase():
 	hand.set_selectable(false)
 	table.set_selectable(false)
-	# Show koi koi modal
-	_on_koikoi_action(false)
+	koikoi_popup.show()
 
 func _deselect_cards():
 	table.deselect_card()
 	hand.deselect_card()
 
-func _on_koikoi_action(koi_koi: bool) -> void: # TODO: hook to modal
+func _on_koikoi_action(koi_koi: bool) -> void:
+	_assert_action(TurnPhase.KoiKoi)
 	if koi_koi:
 		koi_koi()
 	else:
