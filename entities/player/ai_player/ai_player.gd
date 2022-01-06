@@ -5,7 +5,13 @@ func _on_hand_phase():
 	
 func _on_deck_phase(card:Card):
 	match_deck_card(card)
-	
+
+func _on_koikoi_phase():
+	if hand_cards_count() > 2:
+		koi_koi()
+	else:
+		end_round()
+
 func match_hand_card():
 	var table_cards=table.get_cards()
 	var hand_cards=hand.get_cards()

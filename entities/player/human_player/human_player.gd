@@ -43,7 +43,18 @@ func _on_finish_turn():
 	hand.set_selectable(false)
 	table.set_selectable(false)
 
+func _on_koikoi_phase():
+	hand.set_selectable(false)
+	table.set_selectable(false)
+	# Show koi koi modal
+	_on_koikoi_action(false)
+
 func _deselect_cards():
 	table.deselect_card()
 	hand.deselect_card()
-	
+
+func _on_koikoi_action(koi_koi: bool) -> void: # TODO: hook to modal
+	if koi_koi:
+		koi_koi()
+	else:
+		end_round()

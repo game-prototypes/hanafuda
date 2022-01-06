@@ -1,7 +1,6 @@
 extends Node2D
 
 var Dealer = preload("res://scripts/dealer.gd")
-var PointsCalculator = preload("res://scripts/points_calculator.gd")
 
 onready var deck:Deck=$Deck
 onready var table:CardStack=$Table
@@ -28,12 +27,12 @@ func _begin_player_turn(index:int):
 	prints("Player", index, "Turn")
 	players[index].begin_turn()
 
-func _on_player_turn_finished(player):
-	prints("Points", PointsCalculator.tally_points(player.get_captured_cards(), false))
-	#If new combination, ask for koi-koi
+func _on_player_turn_finished(player, round_end: bool):
 	var index=players.find(player)
 	assert(index!=-1, "Player not found")
 	index+=1
 	if index==players.size():
 		index=0
 	_begin_player_turn(index)
+	
+	# TODO: check round_end and if both players do not have cards (tie)

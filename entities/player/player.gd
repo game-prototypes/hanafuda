@@ -3,10 +3,12 @@ extends Node
 # Player contains a player state and valid actions
 
 var PairChecker = preload("res://scripts/pair_checker.gd")
+var PointsCalculator = preload("res://scripts/points_calculator.gd")
 
 enum TurnPhase {
 	HandMatching,
-	DeckMatching
+	DeckMatching,
+	KoiKoi
 }
 
 var phase: int = TurnPhase.HandMatching
@@ -19,7 +21,10 @@ onready var hand:CardStack=$Hand
 onready var captured_cards=$CapturedCards
 onready var player_deck_card=$DeckCardPlaceholder
 
-signal turn_finished(player)
+var points=0
+
+signal turn_finished(player, win_round)
+signal koi_koi()
 
 func game_setup(_table:CardStack, _deck:Deck) -> void:
 	assert(table==null and deck==null, "Player is already set")
@@ -63,9 +68,19 @@ func capture_deck_card(table_card: Card) -> void:
 		_capture_card_from_stack(table, card_to_capture)
 	player_deck_card.remove_card()
 	captured_cards.add_card(deck_card)
+	_update_points_and_finish_turn()
+
+func koi_koi():
+	_assert_action(TurnPhase.KoiKoi)
+	emit_signal("koi_koi")
 	_finish_turn()
 
-func _discard_deck_card():
+func end_round():
+	print("End Round")
+	_assert_action(TurnPhase.KoiKoi)
+	_finish_turn(true)	
+
+func discard_deck_card():
 	_assert_action(TurnPhase.DeckMatching)
 	var deck_card=player_deck_card.card
 	player_deck_card.remove_card() # FIXME: ORDER IS IMPORTANT (remove->add)
@@ -85,25 +100,46 @@ func _set_deck_phase()->void:
 	if PairChecker.can_pair([card], table.cards):
 		_on_deck_phase(card)
 	else:
-		_discard_deck_card()
+		discard_deck_card()
+		_update_points_and_finish_turn()
+
+func _set_koi_koi_phase()->void:
+	print("koi koi phase")
+	phase=TurnPhase.KoiKoi
+	if hand_cards_count()>0:
+		_on_koikoi_phase()
+	else:
+		end_round()
+
+func _update_points_and_finish_turn():
+	var new_points=PointsCalculator.tally_points(get_captured_cards())
+	prints("Points", new_points)
+	if new_points > points:
+		points=new_points
+		_set_koi_koi_phase()
+	else:
+		points=new_points
 		_finish_turn()
-	
-func _finish_turn():
+
+func _finish_turn(end_round: bool = false):
 	print("Finish Turn")
 	current_turn=false
+	
 	_on_finish_turn()
-	emit_signal("turn_finished", self)
+	emit_signal("turn_finished", self, end_round)
 
 ## Behaviour Hooks
 func _on_finish_turn():
-	assert(true, "Behaviour Not Implements")
+	pass
 
 func _on_hand_phase()->void:
-	assert(true, "Behaviour Not Implements")
+	assert(false, "Behaviour Not Implemented")
 
 func _on_deck_phase(_card:Card)->void:
-	assert(true, "Behaviour Not Implements")
+	assert(false, "Behaviour Not Implemented")
 
+func _on_koikoi_phase()->void:
+	assert(false, "Behaviour Not Implemented")
 #####
 
 
@@ -132,6 +168,6 @@ func _get_table_cards_to_capture(player_card: Card, table_card:Card)->Array:
 		return hiki
 	else:
 		return [table_card]
-
-
 	
+func hand_cards_count()->int:
+	return hand.get_cards().size()
