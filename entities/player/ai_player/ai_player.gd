@@ -1,10 +1,10 @@
 extends Player
 
 func _on_hand_phase():
-	match_hand_card()
+	_match_hand_card()
 	
 func _on_deck_phase(card:Card):
-	match_deck_card(card)
+	_match_deck_card(card)
 
 func _on_koikoi_phase():
 	if hand_cards_count() > 2:
@@ -12,7 +12,7 @@ func _on_koikoi_phase():
 	else:
 		end_round()
 
-func match_hand_card():
+func _match_hand_card():
 	var table_cards=table.get_cards()
 	var hand_cards=hand.get_cards()
 	var pair_to_capture=_select_pair(hand_cards, table_cards)
@@ -30,13 +30,10 @@ func _discard_lowest_card():
 			lowest=card
 	discard(lowest)
 
-func match_deck_card(deck_card:Card):
-	var pair_to_capture=_select_pair([deck_card], table.cards)
+func _match_deck_card(deck_card:Card):
+	var pair_to_capture=_select_pair([deck_card], table.get_cards())
 	assert(pair_to_capture!=null, "Deck card cannot be pair by AI (after checks)")
 	capture_deck_card(pair_to_capture[1])
-
-func calculate_pair_points(pair:Array) -> int:
-	return get_card_points(pair[0])+get_card_points(pair[1])
 
 func get_card_points(card:Card)->int:
 	match card.info.type:
@@ -68,10 +65,11 @@ func _select_pair(cards1: Array, cards2: Array):
 		return null
 
 	for pair in pairs:
-		var points=calculate_pair_points(pair)
+		var points=_calculate_pair_points(pair)
 		pair_points.append([pair, points])
 	pair_points.sort_custom(self, "_sort_pairs_points")
 	
 	return pair_points[0][0]
 
-	
+func _calculate_pair_points(pair:Array) -> int:
+	return get_card_points(pair[0])+get_card_points(pair[1])

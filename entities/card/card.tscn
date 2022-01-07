@@ -30,4 +30,6 @@ scale = Vector2( 0.106, 0.104 )
 z_index = -2
 texture = ExtResource( 5 )
 
+[node name="Tween" type="Tween" parent="."]
+
 [connection signal="on_click" from="Area2D" to="." method="_on_click"]

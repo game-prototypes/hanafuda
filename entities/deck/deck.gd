@@ -24,4 +24,5 @@ func take_card() -> Card:
 	var card_info:CardResource=cards_left.pop_front()
 	var card:Card=card_scene.instance()
 	card.init_card(card_info)
+	card.position=Vector2.ZERO	
 	return card

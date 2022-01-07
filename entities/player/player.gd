@@ -41,8 +41,12 @@ func add_card(card:Card):
 
 func get_captured_cards() -> Array:
 	return captured_cards.get_cards()
+
+func hand_cards_count()->int:
+	return hand.get_cards().size()
+
 # Actions
-# Actions are public methods that performs an action or asserts if it is not valid
+## Actions are public methods that perform an action or asserts if it is not valid
 
 func discard(card: Card) -> void:
 	_assert_action(TurnPhase.HandMatching)
@@ -86,7 +90,7 @@ func discard_deck_card():
 	player_deck_card.remove_card() # FIXME: ORDER IS IMPORTANT (remove->add)
 	table.add_card(deck_card)
 	
-## Lifecycle events 
+# Lifecycle events 
 func _set_hand_phase()->void:
 	print("Hand Phase")	
 	phase=TurnPhase.HandMatching
@@ -97,7 +101,7 @@ func _set_deck_phase()->void:
 	phase=TurnPhase.DeckMatching
 	var card=_take_deck_card()
 		
-	if PairChecker.can_pair([card], table.cards):
+	if PairChecker.can_pair([card], table.get_cards()):
 		_on_deck_phase(card)
 	else:
 		discard_deck_card()
@@ -128,7 +132,7 @@ func _finish_turn(end_round: bool = false):
 	_on_finish_turn()
 	emit_signal("turn_finished", self, end_round)
 
-## Behaviour Hooks
+# Behaviour Hooks
 func _on_finish_turn():
 	pass
 
@@ -140,11 +144,10 @@ func _on_deck_phase(_card:Card)->void:
 
 func _on_koikoi_phase()->void:
 	assert(false, "Behaviour Not Implemented")
-#####
 
-
+# Private actions and helpers
 func _can_pair_hand() -> bool:
-	return PairChecker.can_pair(hand.cards, table.cards)
+	return PairChecker.can_pair(hand.get_cards(), table.get_cards())
 
 func _take_deck_card() -> Card:
 	_assert_action(TurnPhase.DeckMatching)
@@ -162,12 +165,11 @@ func _assert_action(expected_phase: int):
 
 func _get_table_cards_to_capture(player_card: Card, table_card:Card)->Array:
 	assert(PairChecker.same_month(player_card, table_card), "Invalid pair")
-	var hiki=PairChecker.get_hiki(player_card, table.cards)
+	var hiki=PairChecker.get_hiki(player_card, table.get_cards())
 	if hiki!=null:
 		assert(hiki.size()==3, "Invalid Hiki")
 		return hiki
 	else:
 		return [table_card]
 	
-func hand_cards_count()->int:
-	return hand.get_cards().size()
+
