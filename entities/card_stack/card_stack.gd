@@ -18,9 +18,6 @@ var selected_card
 
 signal card_selected(card)
 
-func _ready():
-	_draw_cards()
-
 func get_cards():
 	var result=[]
 	for card in cards:
@@ -37,11 +34,8 @@ func add_card(card: Card) -> void:
 	# FIXME: card.faced_up needs to be set before add_child, these could be independent
 	$Cards.add_child(card)
 	var card_pos=_get_null_position(cards)
-	if card_pos==-1:
-		cards.append(card)
-	else:
-		cards[card_pos]=card
-	_draw_cards()
+	_set_card_position(card, card_pos)
+		
 	card.connect("on_click", self, "_on_card_click")
 
 func remove_card(card: Card) -> void:
@@ -49,9 +43,7 @@ func remove_card(card: Card) -> void:
 	var card_position=cards.find(card)
 	assert(card_position>=0, "Card not found")
 	cards[card_position]=null
-	#cards.remove(card_position)
 	$Cards.remove_child(card)
-	_draw_cards()
 
 func deselect_card() -> void:
 	if selected_card != null:
@@ -61,24 +53,25 @@ func deselect_card() -> void:
 func set_selectable(is_selectable:bool)->void:
 	selectable=is_selectable
 
-func _draw_cards():
-	var total_width=_get_total_width()
-	var x_offset:float=-(total_width/2)
-	var y_offset:float=0
-	
-	var i=0
-	for card in cards:
-		i+=1
-		if i>row_size and row_size>0:
-			i=1
-			y_offset+=Constants.CARD_HEIGHT+separation.y
-			x_offset=-(total_width/2)
-			
-		var card_position:Vector2=Vector2(x_offset, y_offset)
-		if card!=null:
-			card.move_to(card_position)
-			#card.position=card_position
-		x_offset+=Constants.CARD_WIDTH+separation.x
+func _set_card_position(card:Card, index:int):
+	if index==-1:
+		cards.append(card)
+		index=cards.size()-1
+	else:
+		cards[index]=card
+	var card_coords=_get_card_coords(index)
+	card.move_to(card_coords)
+
+func _get_card_coords(index:int) -> Vector2:
+	var row=0
+	var row_cards=index
+	if row_size>0:
+		row=floor(index/row_size)
+		row_cards=index%row_size
+		
+	var y_offset=row*(Constants.CARD_HEIGHT+separation.y)
+	var x_offset=(row_cards*(Constants.CARD_WIDTH+separation.x))
+	return Vector2(x_offset, y_offset)
 
 func _get_total_width():
 	var max_width=max(separation.x*(row_size-1),0)+row_size*Constants.CARD_WIDTH

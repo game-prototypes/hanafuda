@@ -24,13 +24,13 @@ func show_outline(value: bool)->void:
 	$Outline.visible=value
 
 func move_to(pos: Vector2):
-	#var time=position.distance_to(pos)/movement_speed
-	#tween.stop_all()
-	#tween.interpolate_property(self, "position",
-	#	position, pos, 1,
-	#	Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	#tween.start()
-	position=pos
+	var time=position.distance_to(pos)/movement_speed
+	tween.stop_all()
+	tween.interpolate_property(self, "position",
+		position, pos, 1,
+		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
+	#position=pos
 
 func _set_texture()->void:
 	if faced_up:

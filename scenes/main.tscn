@@ -14,7 +14,7 @@ __meta__ = {
 }
 
 [node name="Table" parent="." instance=ExtResource( 1 )]
-position = Vector2( 514, 206 )
+position = Vector2( 269, 206 )
 row_size = 4
 
 [node name="Deck" parent="." instance=ExtResource( 2 )]
