@@ -37,6 +37,7 @@ func add_card(card: Card) -> void:
 	#card.global_position=pos
 	var card_pos=_get_null_position(cards)
 	_set_card_position(card, card_pos)
+	card.global_rotation=self.global_rotation
 		
 	card.connect("on_click", self, "_on_card_click")
 
