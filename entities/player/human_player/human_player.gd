@@ -5,7 +5,7 @@ onready var koikoi_popup:Control=$HUD/KoiKoiPopup
 func game_setup(_table:CardStack, _deck:Deck) -> void:
 	.game_setup(_table, _deck)
 	table.connect("card_selected", self, "_on_card_selected")
-	hand.connect("card_selected", self, "_on_card_selected")
+	hand.connect("card_selected", self, "_on_card_selected")	
 
 func _on_card_selected(card): # Called for any card (table or stack) selected
 	assert(current_turn, "Invalid action")

@@ -10,6 +10,8 @@ var koi_koi: bool = false
 
 var players=[]
 
+var current_round:int=0
+
 func _enter_tree():
 	randomize()
 
@@ -51,7 +53,14 @@ func end_round(winner=null):
 		print("TIE")
 	else:
 		prints("Player",winner,"wins")
-	
+	current_round+=1
+	if current_round==12: #13th round
+		end_match()
+	else:
+		get_tree().reload_current_scene()
+
+func end_match():
+	print("End Match")
 
 func no_cards_left_in_players()->bool:
 	for player in players:

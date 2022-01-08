@@ -1,7 +1,6 @@
 class_name CardStack
 extends Node2D
 
-
 enum CardFace {
 	UP,
 	DOWN
@@ -32,9 +31,6 @@ func add_card(card: Card) -> void:
 	elif card_orientation==CardFace.DOWN:
 		card.faced_up=false
 	# FIXME: card.faced_up needs to be set before add_child, these could be independent
-	#var pos=card.global_position
-	#$Cards.add_child(card)
-	#card.global_position=pos
 	var card_pos=_get_null_position(cards)
 	_set_card_position(card, card_pos)
 	card.global_rotation=self.global_rotation
@@ -46,7 +42,6 @@ func remove_card(card: Card) -> void:
 	var card_position=cards.find(card)
 	assert(card_position>=0, "Card not found")
 	cards[card_position]=null
-	#$Cards.remove_child(card)
 
 func deselect_card() -> void:
 	if selected_card != null:
