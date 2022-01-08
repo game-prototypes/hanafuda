@@ -8,14 +8,12 @@ func add_card(new_card: Card) -> void:
 	new_card.faced_up=true
 
 	# FIXME: card.faced_up needs to be set before add_child, these could be independent
-	add_child(new_card)
 	card=new_card
-	card.move_to(Vector2.ZERO)
-	#card.position=Vector2.ZERO
+	card.move_to(to_global(Vector2.ZERO))
+
 
 func remove_card() -> Card:
 	assert(card!=null, "Can't remove null card")
-	remove_child(card)
 	
 	var old_card=card
 	card=null

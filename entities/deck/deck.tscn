@@ -61,3 +61,5 @@ cards = [ ExtResource( 4 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 5 
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 1 )
 centered = false
+
+[node name="DealedCards" type="Node2D" parent="."]

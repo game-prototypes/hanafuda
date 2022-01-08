@@ -6,12 +6,15 @@ export(Array,Resource) var cards=[]
 
 var cards_left:Array
 
+onready var dealed_cards=$DealedCards
+
 func _ready():
 	#Assert deck is ok (ids and months)
 	pass
 
 func reset():
 	cards_left=Array(cards)
+	#Delete all cards in $DealedCards
 
 func size()->int:
 	return cards_left.size()
@@ -24,5 +27,7 @@ func take_card() -> Card:
 	var card_info:CardResource=cards_left.pop_front()
 	var card:Card=card_scene.instance()
 	card.init_card(card_info)
+	card.faced_up=false
 	card.position=Vector2.ZERO	
+	dealed_cards.add_child(card)
 	return card

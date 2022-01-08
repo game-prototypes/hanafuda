@@ -32,7 +32,9 @@ func add_card(card: Card) -> void:
 	elif card_orientation==CardFace.DOWN:
 		card.faced_up=false
 	# FIXME: card.faced_up needs to be set before add_child, these could be independent
-	$Cards.add_child(card)
+	#var pos=card.global_position
+	#$Cards.add_child(card)
+	#card.global_position=pos
 	var card_pos=_get_null_position(cards)
 	_set_card_position(card, card_pos)
 		
@@ -43,7 +45,7 @@ func remove_card(card: Card) -> void:
 	var card_position=cards.find(card)
 	assert(card_position>=0, "Card not found")
 	cards[card_position]=null
-	$Cards.remove_child(card)
+	#$Cards.remove_child(card)
 
 func deselect_card() -> void:
 	if selected_card != null:
@@ -60,13 +62,13 @@ func _set_card_position(card:Card, index:int):
 	else:
 		cards[index]=card
 	var card_coords=_get_card_coords(index)
-	card.move_to(card_coords)
+	card.move_to(to_global(card_coords))
 
 func _get_card_coords(index:int) -> Vector2:
 	var row=0
 	var row_cards=index
 	if row_size>0:
-		row=floor(index/row_size)
+		row=floor(float(index)/row_size)
 		row_cards=index%row_size
 		
 	var y_offset=row*(Constants.CARD_HEIGHT+separation.y)
