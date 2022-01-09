@@ -9,10 +9,11 @@
 script = ExtResource( 1 )
 
 [node name="Deck" parent="." instance=ExtResource( 3 )]
-visible = false
 
 [node name="CardStack" parent="." instance=ExtResource( 2 )]
 position = Vector2( 515, 82 )
 row_size = 4
+centered = true
 
 [node name="Camera" parent="." instance=ExtResource( 4 )]
+zoom_constraint = Vector2( 0.2, 5 )

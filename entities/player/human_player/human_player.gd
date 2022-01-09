@@ -2,8 +2,8 @@ extends Player
 
 onready var koikoi_popup:Control=$HUD/KoiKoiPopup
 
-func game_setup(_table:CardStack, _deck:Deck) -> void:
-	.game_setup(_table, _deck)
+func game_setup(_id: int, _table:CardStack, _deck:Deck) -> void:
+	.game_setup(_id, _table, _deck)
 	table.connect("card_selected", self, "_on_card_selected")
 	hand.connect("card_selected", self, "_on_card_selected")	
 

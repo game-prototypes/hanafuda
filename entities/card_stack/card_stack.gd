@@ -10,6 +10,7 @@ export var separation:Vector2=Vector2(10.0, 5.0)
 export var row_size:int=0 # 0 means no rows
 export(CardFace) var card_orientation:int = CardFace.UP
 export(bool) var selectable:bool=true
+export(bool) var centered:bool=false
 
 var cards:Array = [] #Include cards and null for cards removed, i is the card position
 
@@ -69,18 +70,14 @@ func _get_card_coords(index:int) -> Vector2:
 		
 	var y_offset=row*(Constants.CARD_HEIGHT+separation.y)
 	var x_offset=(row_cards*(Constants.CARD_WIDTH+separation.x))
+	if centered:
+		x_offset=x_offset-(_get_max_width()/2)+(Constants.CARD_WIDTH/2)
 	return Vector2(x_offset, y_offset)
 
-func _get_total_width():
+func _get_max_width():
+	assert(row_size>0, "cannot return max width")
 	var max_width=max(separation.x*(row_size-1),0)+row_size*Constants.CARD_WIDTH
-	
-	var total_offset=max(separation.x*(cards.size()-1),0)
-	var total_width=cards.size()*Constants.CARD_WIDTH+total_offset
-	
-	if row_size>0 and total_width>max_width:
-		return max_width
-	else:
-		return total_width
+	return max_width
 
 
 func _on_card_click(card:Card, button_index:int):

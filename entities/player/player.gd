@@ -2,6 +2,7 @@ class_name Player
 extends Node
 # Player contains a player state and valid actions
 
+var id
 var PairChecker = preload("res://scripts/pair_checker.gd")
 var PointsCalculator = preload("res://scripts/points_calculator.gd")
 
@@ -26,12 +27,14 @@ var points=0
 signal turn_finished(player, win_round)
 signal koi_koi()
 
-func game_setup(_table:CardStack, _deck:Deck) -> void:
-	assert(table==null and deck==null, "Player is already set")
+func game_setup(_id: int, _table:CardStack, _deck:Deck) -> void:
+	assert(table==null and deck==null and id==null, "Player is already set")
 	table=_table
 	deck=_deck
+	id=_id
 
 func begin_turn():
+	assert(table!=null and id!=null and deck!=null, "Player not set")
 	assert(current_turn==false, "Current turn already true")
 	current_turn=true
 	_set_hand_phase()

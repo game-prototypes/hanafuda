@@ -8,6 +8,11 @@ enum CardFace {
 	DOWN
 }
 
+enum PlayerType {
+	HUMAN,
+	AI
+}
+
 enum Month {
 	JANUARY,
 	FEBRUARY,
