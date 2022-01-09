@@ -64,6 +64,7 @@ config/icon="res://icon.png"
 
 Constants="*res://autoload/constants.gd"
 GameState="*res://autoload/game_state.gd"
+SceneSwitcher="*res://autoload/scene_switcher.tscn"
 
 [debug]
 

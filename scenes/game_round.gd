@@ -62,7 +62,7 @@ func end_round(winner=null):
 	#if current_round==12: #13th round
 	#	end_match()
 	#else:
-	get_tree().reload_current_scene()
+	SceneSwitcher.reset_scene()
 
 func end_match():
 	print("End Match")
