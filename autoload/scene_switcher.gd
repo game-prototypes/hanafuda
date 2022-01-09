@@ -11,9 +11,6 @@ func _ready():
 func switch_to_game_round_scene():
 	_switch_to_scene(game_round_scene)
 
-func reset_scene():
-	get_tree().reload_current_scene()
-
 func _switch_to_scene(scene:PackedScene):
 	var res=get_tree().change_scene_to(scene)
 	assert(res==OK, "Cannot load scene")

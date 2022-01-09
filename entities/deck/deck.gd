@@ -13,8 +13,9 @@ func _ready():
 	pass
 
 func reset():
-	cards_left=Array(cards)
+	cards_left=[]+cards # clone
 	#Delete all cards in $DealedCards
+	assert(size()==48, "Not enough cards in ready: "+String(size()))
 
 func size()->int:
 	return cards_left.size()
