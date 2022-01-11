@@ -1,45 +1,157 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://entities/point_counter/point_counter.gd" type="Script" id=1]
+[ext_resource path="res://assets/table_dark.png" type="Texture" id=2]
+[ext_resource path="res://entities/point_counter/point_cell.tscn" type="PackedScene" id=3]
 
-[node name="PointCounter" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Panel" type="Panel" parent="."]
+[node name="PointCounter" type="PopupDialog"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -207.5
-margin_top = -98.5
-margin_right = 207.5
-margin_bottom = 98.5
+margin_left = -482.5
+margin_top = -222.5
+margin_right = 482.5
+margin_bottom = 222.5
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+points_cell = ExtResource( 3 )
+total_labels_path = [ NodePath("TotalLabel1"), NodePath("TotalLabel2") ]
 
-[node name="RoundLabel" type="Label" parent="Panel"]
+[node name="RoundLabel" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -58.0
-margin_top = 17.0
+margin_top = 31.0
 margin_right = 58.0
-margin_bottom = 55.0
-text = "Round 18"
+margin_bottom = 69.0
+text = "Round 4"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PointsTable" type="GridContainer" parent="Panel"]
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -440.5
+margin_top = -280.0
+margin_right = 440.5
+margin_bottom = -78.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="PointsTable" type="GridContainer" parent="."]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -96.0
-margin_bottom = 2.0
-columns = 13
+margin_left = 166.0
+margin_top = -266.0
+margin_right = -144.0
+margin_bottom = -106.0
+size_flags_horizontal = 3
+custom_constants/vseparation = 36
+custom_constants/hseparation = 18
+columns = 12
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="PlayerTitle" type="Label" parent="."]
+margin_left = 64.5
+margin_top = 184.5
+margin_right = 155.5
+margin_bottom = 218.5
+rect_pivot_offset = Vector2( 68, 34 )
+text = "Player"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TotalTitle" type="Label" parent="."]
+margin_left = 822.5
+margin_top = 176.5
+margin_right = 913.5
+margin_bottom = 210.5
+rect_pivot_offset = Vector2( 57, 34 )
+text = "Total"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TotalLabel1" type="Label" parent="."]
+margin_left = 824.5
+margin_top = 233.5
+margin_right = 915.5
+margin_bottom = 267.5
+rect_pivot_offset = Vector2( 57, 34 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TotalLabel2" type="Label" parent="."]
+margin_left = 824.5
+margin_top = 298.5
+margin_right = 915.5
+margin_bottom = 332.5
+rect_pivot_offset = Vector2( 57, 34 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player1Label" type="Label" parent="."]
+margin_left = 63.5
+margin_top = 236.5
+margin_right = 154.5
+margin_bottom = 270.5
+rect_pivot_offset = Vector2( 68, 34 )
+text = "Player 1"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player2Label" type="Label" parent="."]
+margin_left = 59.5
+margin_top = 293.5
+margin_right = 150.5
+margin_bottom = 327.5
+rect_pivot_offset = Vector2( 68, 34 )
+text = "Player 2"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NextRoundButton" type="Button" parent="."]
+margin_left = 821.5
+margin_top = 391.5
+margin_right = 907.5
+margin_bottom = 411.5
+text = "Next Round"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="NextRoundButton" to="." method="_on_next_round_pressed"]

@@ -5,6 +5,7 @@ var Dealer = preload("res://scripts/dealer.gd")
 onready var deck:Deck=$Deck
 onready var table:CardStack=$Table
 onready var player_spawner=$Players
+onready var point_counter:PopupDialog=$CanvasLayer/PointCounter
 
 var dealer
 var koi_koi: bool = false
@@ -54,15 +55,18 @@ func _on_player_turn_finished(player:Player, round_end: bool):
 func end_round(winner=null):
 	print("ROUND END")
 	
-	if winner == null:
-		print("TIE")
-	else:
-		prints("Player",winner.id,"wins")
+	for player_info in GameState.players.values():
+		if winner!=null and winner.id==player_info.id:
+			player_info.add_round_points(winner.points)
+		else:
+			player_info.add_round_points(0)
+	
 	#current_round+=1
 	#if current_round==12: #13th round
 	#	end_match()
 	#else:
-	SceneSwitcher.switch_to_game_round_scene()
+	point_counter.fill_table(GameState.players.values()) # FIXME: order
+	point_counter.show_modal(true)
 
 func end_match():
 	print("End Match")
@@ -75,3 +79,7 @@ func no_cards_left_in_players()->bool:
 
 func get_players()->Array:
 	return player_spawner.players
+
+func _on_next_round():
+	SceneSwitcher.switch_to_game_round_scene()
+	

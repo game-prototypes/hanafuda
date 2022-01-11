@@ -125,7 +125,6 @@ func _update_points_and_finish_turn():
 		points=new_points
 		_set_koi_koi_phase()
 	else:
-		points=new_points
 		_finish_turn()
 
 func _finish_turn(end_round: bool = false):

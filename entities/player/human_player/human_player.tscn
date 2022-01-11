@@ -10,6 +10,5 @@ script = ExtResource( 2 )
 [node name="HUD" type="CanvasLayer" parent="." index="3"]
 
 [node name="KoiKoiPopup" parent="HUD" index="0" instance=ExtResource( 4 )]
-visible = false
 
 [connection signal="option_selected" from="HUD/KoiKoiPopup" to="." method="_on_koikoi_action"]

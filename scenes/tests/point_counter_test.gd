@@ -20,3 +20,4 @@ func _ready():
 	player2.add_round_points(6)
 	
 	points_counter.fill_table([player1, player2])
+	points_counter.show_modal()
