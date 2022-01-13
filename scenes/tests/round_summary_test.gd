@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var points_counter=$CanvasLayer/PointCounter
+onready var points_counter=$CanvasLayer/RoundSummary
 
 export(bool) var end_game=false
 

@@ -5,7 +5,7 @@ var Dealer = preload("res://scripts/dealer.gd")
 onready var deck:Deck=$Deck
 onready var table:CardStack=$Table
 onready var player_spawner=$Players
-onready var point_counter:PopupDialog=$CanvasLayer/PointCounter
+onready var round_summary:PopupDialog=$CanvasLayer/RoundSummary
 
 var dealer
 var koi_koi: bool = false
@@ -65,11 +65,11 @@ func end_round(winner=null):
 	if GameState.current_round==11:
 		# LAST ROUND
 		var game_winner=GameState.get_winning_player()
-		point_counter.show_winner(game_winner)
+		round_summary.show_winner(game_winner)
 	#else:
-	point_counter.fill_table(GameState.players.values()) # FIXME: order
-	point_counter.set_round(GameState.current_round)
-	point_counter.show_modal(true)
+	round_summary.fill_table(GameState.players.values()) # FIXME: order
+	round_summary.set_round(GameState.current_round)
+	round_summary.show_modal(true)
 
 func end_match():
 	print("End Match")

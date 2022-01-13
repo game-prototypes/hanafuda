@@ -1,11 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://entities/point_counter/point_counter.gd" type="Script" id=1]
-[ext_resource path="res://assets/table_dark.png" type="Texture" id=2]
-[ext_resource path="res://entities/point_counter/point_cell.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entities/round_summary/point_cell.tscn" type="PackedScene" id=1]
+[ext_resource path="res://entities/round_summary/round_summary.gd" type="Script" id=2]
+[ext_resource path="res://assets/table_dark.png" type="Texture" id=3]
 
-[node name="PointCounter" type="PopupDialog"]
-visible = true
+[node name="RoundSummary" type="PopupDialog"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -14,11 +13,11 @@ margin_left = -482.5
 margin_top = -222.5
 margin_right = 482.5
 margin_bottom = 222.5
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-points_cell = ExtResource( 3 )
+points_cell = ExtResource( 1 )
 total_labels_path = [ NodePath("TotalLabel1"), NodePath("TotalLabel2") ]
 
 [node name="RoundLabel" type="Label" parent="."]
@@ -43,7 +42,7 @@ margin_left = -440.5
 margin_top = -280.0
 margin_right = 440.5
 margin_bottom = -78.0
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 expand = true
 stretch_mode = 5
 __meta__ = {

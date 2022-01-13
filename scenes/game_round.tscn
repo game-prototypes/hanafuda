@@ -7,7 +7,7 @@
 [ext_resource path="res://entities/camera/main_camera.tscn" type="PackedScene" id=5]
 [ext_resource path="res://entities/card_stack/card_stack.tscn" type="PackedScene" id=6]
 [ext_resource path="res://entities/player/player_spawner.gd" type="Script" id=7]
-[ext_resource path="res://entities/point_counter/point_counter.tscn" type="PackedScene" id=8]
+[ext_resource path="res://entities/round_summary/round_summary.tscn" type="PackedScene" id=8]
 
 [node name="GameRound" type="Node2D"]
 script = ExtResource( 1 )
@@ -34,7 +34,7 @@ ai_player = ExtResource( 3 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="PointCounter" parent="CanvasLayer" instance=ExtResource( 8 )]
+[node name="RoundSummary" parent="CanvasLayer" instance=ExtResource( 8 )]
 
-[connection signal="end_game" from="CanvasLayer/PointCounter" to="." method="_on_end_game"]
-[connection signal="next_round" from="CanvasLayer/PointCounter" to="." method="_on_next_round"]
+[connection signal="end_game" from="CanvasLayer/RoundSummary" to="." method="_on_end_game"]
+[connection signal="next_round" from="CanvasLayer/RoundSummary" to="." method="_on_next_round"]
