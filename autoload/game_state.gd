@@ -1,16 +1,13 @@
 extends Node
 # Game state existing across multiple rounds
 
-var current_round:=0
+var current_round:=1
 var players:=Dictionary()
 
 var main_player:int
 
-func reset_round():
-	current_round=0
-
 func reset():
-	current_round=0
+	current_round=1
 	players=Dictionary()
 
 func add_player(id:int, type:int, main:bool=false):

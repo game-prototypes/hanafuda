@@ -17,29 +17,25 @@ func _ready():
 
 
 func fill_table(players:Array):
-	fill_table_header(12)
+	_fill_table_header(12)
 	for i in range(players.size()):
 		var player=players[i]
-		fill_table_row(player, 12)
+		_fill_table_row(player, 12)
 		total_labels[i].text=String(player.total_points)
 
-func fill_table_header(max_rounds:int):
+func _fill_table_header(max_rounds:int):
 	for round_index in range(max_rounds):
-		var header_label=instance_cell()
+		var header_label=_instance_cell()
 		header_label.get_node("Label").text=String(round_index) # TODO: fix
 		
-func fill_table_row(player:PlayerInfo, max_rounds:int):
-	#var name_label=Label.new()
-	#name_label.text="Player:"+String(player.id)
-	#points_table.add_child(name_label)
-	
+func _fill_table_row(player:PlayerInfo, max_rounds:int):
 	for round_index in range(max_rounds):
-		var points_label=instance_cell()
+		var points_label=_instance_cell()
 		if player.points_per_round.size() > round_index:
 			var points=player.points_per_round[round_index]
 			points_label.get_node("Label").text=String(points) # TODO: fix
 
-func instance_cell() -> Control:
+func _instance_cell() -> Control:
 	var instance=points_cell.instance()
 	instance.size_flags_horizontal=SIZE_EXPAND
 	points_table.add_child(instance)

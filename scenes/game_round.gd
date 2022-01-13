@@ -81,5 +81,6 @@ func get_players()->Array:
 	return player_spawner.players
 
 func _on_next_round():
+	GameState.current_round+=1
 	SceneSwitcher.switch_to_game_round_scene()
 	
