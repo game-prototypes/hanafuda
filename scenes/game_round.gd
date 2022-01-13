@@ -62,10 +62,13 @@ func end_round(winner=null):
 			player_info.add_round_points(0)
 	
 	#current_round+=1
-	#if current_round==12: #13th round
-	#	end_match()
+	if GameState.current_round==11:
+		# LAST ROUND
+		var game_winner=GameState.get_winning_player()
+		point_counter.show_winner(game_winner)
 	#else:
 	point_counter.fill_table(GameState.players.values()) # FIXME: order
+	point_counter.set_round(GameState.current_round)
 	point_counter.show_modal(true)
 
 func end_match():
@@ -83,4 +86,6 @@ func get_players()->Array:
 func _on_next_round():
 	GameState.current_round+=1
 	SceneSwitcher.switch_to_game_round_scene()
-	
+
+func _on_end_game():
+	SceneSwitcher.switch_to_main_menu_scene()

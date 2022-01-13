@@ -31,3 +31,9 @@ func on_finish_round(points_per_player: Array):
 		var player_info=get_player_info(player_points[0])
 		player_info.add_round_points(round_points)
 		
+func get_winning_player()->PlayerInfo:
+	var winning_player:PlayerInfo=players[0]
+	for player in players:
+		if player.total_points>winning_player.total_points:
+			winning_player=player
+	return winning_player

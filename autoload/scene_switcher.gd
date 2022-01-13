@@ -10,6 +10,9 @@ func _ready():
 
 func switch_to_game_round_scene():
 	_switch_to_scene(game_round_scene)
+	
+func switch_to_main_menu_scene():
+	_switch_to_scene(main_menu_scene)
 
 func _switch_to_scene(scene:PackedScene):
 	var res=get_tree().change_scene_to(scene)

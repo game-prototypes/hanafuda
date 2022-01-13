@@ -5,6 +5,7 @@
 [ext_resource path="res://entities/point_counter/point_cell.tscn" type="PackedScene" id=3]
 
 [node name="PointCounter" type="PopupDialog"]
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -154,4 +155,31 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="EndGameButton" type="Button" parent="."]
+visible = false
+margin_left = 821.5
+margin_top = 391.5
+margin_right = 907.5
+margin_bottom = 411.5
+text = "End Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WinnerLabel" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -57.5
+margin_top = -157.0
+margin_right = 57.5
+margin_bottom = -97.0
+text = "WINNER: 
+0 Points"
+align = 1
+valign = 1
+
 [connection signal="pressed" from="NextRoundButton" to="." method="_on_next_round_pressed"]
+[connection signal="pressed" from="EndGameButton" to="." method="_on_end_game_pressed"]

@@ -47,6 +47,7 @@ func _on_finish_turn():
 func _on_koikoi_phase():
 	hand.set_selectable(false)
 	table.set_selectable(false)
+	koikoi_popup.set_points(points)
 	koikoi_popup.show_modal(true)
 
 func _on_koikoi_action(koi_koi: bool) -> void:

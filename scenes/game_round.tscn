@@ -36,4 +36,5 @@ ai_player = ExtResource( 3 )
 
 [node name="PointCounter" parent="CanvasLayer" instance=ExtResource( 8 )]
 
+[connection signal="end_game" from="CanvasLayer/PointCounter" to="." method="_on_end_game"]
 [connection signal="next_round" from="CanvasLayer/PointCounter" to="." method="_on_next_round"]
