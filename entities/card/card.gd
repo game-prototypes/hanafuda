@@ -26,7 +26,8 @@ func show_outline(value: bool)->void:
 
 func move_to(global_pos: Vector2):
 	var time=global_position.distance_to(global_pos)/movement_speed
-	tween.remove_all()
+	#tween.remove_all()
+	tween.remove(self, "global_position")
 	tween.interpolate_property(self, "global_position",
 		global_position, global_pos, time,
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)

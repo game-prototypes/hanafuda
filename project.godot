@@ -71,6 +71,11 @@ SceneSwitcher="*res://autoload/scene_switcher.tscn"
 gdscript/warnings/unused_argument=false
 gdscript/warnings/return_value_discarded=false
 
+[display]
+
+window/size/width=1500
+window/size/height=800
+
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
