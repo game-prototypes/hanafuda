@@ -1,31 +1,19 @@
 class_name CardStack
-extends Node2D
+extends CardStackInterface
 
-enum CardFace {
-	UP,
-	DOWN
-}
 
-export var separation:Vector2=Vector2(10.0, 5.0)
-export var row_size:int=0 # 0 means no rows
+export var separation:float = 10.0
+export var max_cards:int=0 # 0 means no limit
 export(CardFace) var card_orientation:int = CardFace.UP
 export(bool) var selectable:bool=true
 export(bool) var centered:bool=false
-
-var cards:Array = [] #Include cards and null for cards removed, i is the card position
 
 var selected_card
 
 signal card_selected(card)
 
-func get_cards():
-	var result=[]
-	for card in cards:
-		if card!=null:
-			result.append(card)
-	return result
-
 func add_card(card: Card) -> void:
+	assert(_can_add_card(), "Cannot add card to stack, max size exceeded")
 	# TODO: add card should add the card in the first null position
 	if card_orientation==CardFace.UP:
 		card.faced_up=true
@@ -34,7 +22,7 @@ func add_card(card: Card) -> void:
 	# FIXME: card.faced_up needs to be set before add_child, these could be independent
 	var card_pos=_get_null_position(cards)
 	_set_card_position(card, card_pos)
-	card.global_rotation=self.global_rotation
+	#card.global_rotation=self.global_rotation
 		
 	card.connect("on_click", self, "_on_card_click")
 
@@ -43,6 +31,8 @@ func remove_card(card: Card) -> void:
 	var card_position=cards.find(card)
 	assert(card_position>=0, "Card not found")
 	cards[card_position]=null
+	if card == selected_card:
+		selected_card=null
 
 func deselect_card() -> void:
 	if selected_card != null:
@@ -64,24 +54,20 @@ func _set_card_position(card:Card, index:int):
 func _get_card_coords(index:int) -> Vector2:
 	var row=0
 	var row_cards=index
-	if row_size>0:
-		row=floor(float(index)/row_size)
-		row_cards=index%row_size
 		
-	var y_offset=row*(Constants.CARD_HEIGHT+separation.y)
-	var x_offset=(row_cards*(Constants.CARD_WIDTH+separation.x))
+	var x_offset=(row_cards*(Constants.CARD_WIDTH+separation))
 	if centered:
 		x_offset=x_offset-(_get_max_width()/2)+(Constants.CARD_WIDTH/2)
-	return Vector2(x_offset, y_offset)
+	return Vector2(x_offset, 0)
 
 func _get_max_width():
-	assert(row_size>0, "cannot return max width")
-	var max_width=max(separation.x*(row_size-1),0)+row_size*Constants.CARD_WIDTH
+	assert(max_cards>0, "Cannot get max width if with no max cards")
+	var separation_width=max(separation*(max_cards-1),0)
+	var max_width=separation_width+max_cards*Constants.CARD_WIDTH
 	return max_width
 
-
 func _on_card_click(card:Card, button_index:int):
-	if can_select():
+	if selectable:
 		if selected_card==card:
 			deselect_card()
 		else:
@@ -93,5 +79,5 @@ func _on_card_click(card:Card, button_index:int):
 func _get_null_position(arr: Array) -> int:
 	return arr.find(null)
 
-func can_select()->bool:
-	return selectable
+func _can_add_card()->bool:
+	return max_cards==0 or cards.size()<max_cards

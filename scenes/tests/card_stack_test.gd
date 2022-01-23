@@ -1,20 +1,26 @@
 extends Node2D
 
 onready var deck:Deck = $Deck
-onready var card_stack1:CardStack=$CardStack1
-onready var card_stack2:CardStack=$CardStack2
+onready var table:CardStack=$Table
+onready var hand:CardStack=$Hand
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	deck.reset()
-	deal_card()
-	var second_card=deal_card()
-	deal_card()
-	card_stack1.remove_card(second_card)
-	card_stack2.add_card(second_card)
 
-
-func deal_card():
+func _on_add_card_to_hand():
 	var card=deck.take_card()
-	card_stack1.add_card(card)
-	return card
+	hand.add_card(card)
+
+
+func _on_add_card_to_table():
+	var card=deck.take_card()
+	table.add_card(card)
+
+
+func _on_table_card_selected(card):
+	table.remove_card(card)
+	card.queue_free()
+
+func _on_hand_card_selected(card):
+	hand.remove_card(card)
+	card.queue_free()

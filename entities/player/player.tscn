@@ -10,7 +10,7 @@ script = ExtResource( 1 )
 
 [node name="Hand" parent="." instance=ExtResource( 3 )]
 position = Vector2( -300, 0 )
-row_size = 8
+max_cards = 8
 centered = true
 
 [node name="DeckCardPlaceholder" type="Node2D" parent="."]
