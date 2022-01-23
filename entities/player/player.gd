@@ -28,7 +28,7 @@ signal turn_finished(player, win_round)
 signal koi_koi()
 
 func _ready():
-	assert(hand!=null, "Hand not avilable for player")
+	assert(hand!=null and captured_cards!=null, "Hand and captured cards not avilable for player")
 
 func game_setup(_id: int, _table:CardStack, _deck:Deck) -> void:
 	assert(table==null and deck==null and id==null, "Player is already set")

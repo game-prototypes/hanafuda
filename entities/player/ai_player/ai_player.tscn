@@ -5,6 +5,3 @@
 
 [node name="AIPlayer" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-
-[node name="Hand" parent="." index="0"]
-selectable = false
