@@ -48,6 +48,11 @@ _global_script_classes=[ {
 "class": "TestSuite",
 "language": "GDScript",
 "path": "res://tests/utils/suite.gd"
+}, {
+"base": "Reference",
+"class": "Utils",
+"language": "GDScript",
+"path": "res://scripts/utils.gd"
 } ]
 _global_script_class_icons={
 "Card": "",
@@ -57,7 +62,8 @@ _global_script_class_icons={
 "Deck": "",
 "Player": "",
 "PlayerInfo": "",
-"TestSuite": ""
+"TestSuite": "",
+"Utils": ""
 }
 
 [application]

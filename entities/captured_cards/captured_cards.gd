@@ -24,7 +24,6 @@ func add_card(card:Card):
 				light_cards.add_card(card)
 			Constants.CardType.ANIMAL:
 				animal_cards.add_card(card)
-	card.resize(scale.x)
 
 func get_cards()->Array:
 	var result_array=[]

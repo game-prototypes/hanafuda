@@ -21,7 +21,13 @@ func add_card(card: Card) -> void:
 		card.faced_up=false
 	# FIXME: card.faced_up needs to be set before add_child, these could be independent
 	var card_pos=_get_null_position(cards)
+	
+	Utils.reparent_node(card, self)
+	
 	_set_card_position(card, card_pos)
+	card.resize(global_scale.x)
+	
+
 	#card.global_rotation=self.global_rotation
 		
 	card.connect("on_click", self, "_on_card_click")

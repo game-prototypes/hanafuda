@@ -35,7 +35,7 @@ func move_to(global_pos: Vector2):
 
 func resize(new_scale: float):
 	# TODO: interpolate
-	scale=Vector2(new_scale, new_scale)
+	global_scale=Vector2(new_scale, new_scale)
 
 
 func _update_texture()->void:
