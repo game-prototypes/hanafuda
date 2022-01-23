@@ -34,6 +34,22 @@ script = ExtResource( 7 )
 human_player = ExtResource( 2 )
 ai_player = ExtResource( 3 )
 
+[node name="HumanPlayer" parent="Players" instance=ExtResource( 2 )]
+position = Vector2( -8, 346 )
+
+[node name="Hand" parent="Players/HumanPlayer" instance=ExtResource( 6 )]
+max_cards = 8
+centered = true
+
+[node name="OpponentPlayer" parent="Players" instance=ExtResource( 3 )]
+position = Vector2( 4, -652 )
+
+[node name="Hand" parent="Players/OpponentPlayer" instance=ExtResource( 6 )]
+position = Vector2( -8, 0 )
+max_cards = 8
+selectable = false
+centered = true
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="RoundSummary" parent="CanvasLayer" instance=ExtResource( 8 )]

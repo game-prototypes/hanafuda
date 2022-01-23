@@ -23,20 +23,20 @@ func spawn_player(player_info:PlayerInfo, main:bool=false) -> Player:
 	add_child(player_instance)	
 	player_instance.game_setup(player_info.id, table, deck)
 	players.append(player_instance)	
-	if main:
-		player_instance.position=Vector2(0, +players_offset)
-	else:
-		player_instance.position=Vector2(0, -players_offset)
-		player_instance.rotation_degrees=180
+	#if main:
+	#	player_instance.position=Vector2(0, +players_offset)
+	#else:
+	#	player_instance.position=Vector2(0, -players_offset)
+	#	player_instance.rotation_degrees=180
 	return player_instance
 
 func _get_player_instance(type:int) -> Player:
 	var instance
 	match type:
 		Constants.PlayerType.HUMAN:
-			instance=human_player.instance()
+			instance=$HumanPlayer
 		Constants.PlayerType.AI:
-			instance=ai_player.instance()
+			instance=$OpponentPlayer
 		_:
 			assert(false, "Invalid player type "+String(type))
 	return instance
