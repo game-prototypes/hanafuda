@@ -33,6 +33,11 @@ func move_to(global_pos: Vector2):
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
 
+func resize(new_scale: float):
+	# TODO: interpolate
+	scale=Vector2(new_scale, new_scale)
+
+
 func _update_texture()->void:
 	if faced_up:
 		sprite.set_texture(info.sprite)

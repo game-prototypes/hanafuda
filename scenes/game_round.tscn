@@ -39,11 +39,13 @@ ai_player = ExtResource( 3 )
 position = Vector2( -8, 346 )
 
 [node name="Hand" parent="Players/HumanPlayer" instance=ExtResource( 6 )]
+position = Vector2( 16, -53 )
 max_cards = 8
 centered = true
 
 [node name="CapturedCards" parent="Players/HumanPlayer" instance=ExtResource( 10 )]
-position = Vector2( -565, 40 )
+position = Vector2( -1048, -61 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="OpponentPlayer" parent="Players" instance=ExtResource( 3 )]
 position = Vector2( 4, -652 )

@@ -1,9 +1,17 @@
 extends Node2D
 
+export var separation:float
+
 onready var light_cards:CardStack=$LightCards
 onready var animal_cards:CardStack=$AnimalCards
 onready var ribbon_cards:CardStack=$RibbonCards
 onready var plain_cards:CardStack=$PlainCards
+
+func _ready():
+	$LightCards.separation=separation
+	$AnimalCards.separation=separation
+	$RibbonCards.separation=separation
+	$PlainCards.separation=separation
 
 func add_card(card:Card):
 	var card_info=card.info
@@ -16,6 +24,7 @@ func add_card(card:Card):
 				light_cards.add_card(card)
 			Constants.CardType.ANIMAL:
 				animal_cards.add_card(card)
+	card.resize(scale.x)
 
 func get_cards()->Array:
 	var result_array=[]

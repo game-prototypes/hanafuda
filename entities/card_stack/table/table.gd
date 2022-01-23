@@ -1,10 +1,9 @@
 extends CardStack
 
-
 export var vertical_separation:float = 10.0
 
 func _get_card_coords(index:int) -> Vector2:
-	var row_cards=index/2
+	var row_cards=int(index/2)
 		
 	var x_offset=(row_cards*(Constants.CARD_WIDTH+separation))
 	if centered:

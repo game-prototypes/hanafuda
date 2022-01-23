@@ -10,43 +10,43 @@ script = ExtResource( 1 )
 
 [node name="LightCards" parent="." instance=ExtResource( 2 )]
 position = Vector2( 90, 0 )
-separation = Vector2( -20, 5 )
 selectable = false
 
 [node name="AnimalCards" parent="." instance=ExtResource( 2 )]
 position = Vector2( 90, 285 )
-separation = Vector2( -20, 5 )
 selectable = false
 
 [node name="RibbonCards" parent="." instance=ExtResource( 2 )]
 position = Vector2( 90, 570 )
-separation = Vector2( -20, 5 )
 selectable = false
 
 [node name="PlainCards" parent="." instance=ExtResource( 2 )]
 position = Vector2( 90, 855 )
-separation = Vector2( -40, 5 )
 selectable = false
 
 [node name="LighBackground" type="Sprite" parent="."]
 position = Vector2( 486, 0 )
 scale = Vector2( 1.5, 1.5 )
+z_index = -2
 texture = ExtResource( 3 )
 
 [node name="AnimalBackground" type="Sprite" parent="."]
 position = Vector2( 382, 285 )
 scale = Vector2( 1.5, 1.5 )
+z_index = -2
 texture = ExtResource( 3 )
 offset = Vector2( 69.3333, -2 )
 
 [node name="RibbonBackground" type="Sprite" parent="."]
 position = Vector2( 382, 570 )
 scale = Vector2( 1.5, 1.5 )
+z_index = -2
 texture = ExtResource( 3 )
 offset = Vector2( 69.3333, -2 )
 
 [node name="PlainBackground" type="Sprite" parent="."]
 position = Vector2( 382, 855 )
 scale = Vector2( 1.5, 1.5 )
+z_index = -2
 texture = ExtResource( 3 )
 offset = Vector2( 69.3333, -2 )

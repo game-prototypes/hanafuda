@@ -20,7 +20,6 @@ func spawn_player(player_info:PlayerInfo, main:bool=false) -> Player:
 	assert(table!=null and deck!=null, "Spawner table and deck not set")
 	assert(players.size()<2, "currently only 2 players supported")
 	var player_instance:=_get_player_instance(player_info.type)
-	add_child(player_instance)	
 	player_instance.game_setup(player_info.id, table, deck)
 	players.append(player_instance)	
 	#if main:

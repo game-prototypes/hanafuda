@@ -52,7 +52,6 @@ func _set_card_position(card:Card, index:int):
 	card.move_to(to_global(card_coords))
 
 func _get_card_coords(index:int) -> Vector2:
-	var row=0
 	var row_cards=index
 		
 	var x_offset=(row_cards*(Constants.CARD_WIDTH+separation))
