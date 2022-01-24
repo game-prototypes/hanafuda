@@ -80,7 +80,7 @@ __meta__ = {
 }
 
 [node name="CapturedCards" parent="Players/OpponentPlayer" instance=ExtResource( 10 )]
-position = Vector2( 643, -60 )
+position = Vector2( 716, -60 )
 scale = Vector2( 0.4, 0.4 )
 separation = -30.0
 

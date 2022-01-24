@@ -7,6 +7,11 @@ onready var animal_cards:CardStack=$AnimalCards
 onready var ribbon_cards:CardStack=$RibbonCards
 onready var plain_cards:CardStack=$PlainCards
 
+onready var light_label:Label=$LightCards/LightLabel
+onready var animal_label:Label=$AnimalCards/AnimalLabel
+onready var ribbon_label:Label=$RibbonCards/RibbonLabel
+onready var plain_label:Label=$PlainCards/PlainLabel
+
 func _ready():
 	$LightCards.separation=separation
 	$AnimalCards.separation=separation
@@ -24,6 +29,7 @@ func add_card(card:Card):
 				light_cards.add_card(card)
 			Constants.CardType.ANIMAL:
 				animal_cards.add_card(card)
+	_update_labels()
 
 func get_cards()->Array:
 	var result_array=[]
@@ -32,3 +38,16 @@ func get_cards()->Array:
 	result_array.append_array(ribbon_cards.get_cards())
 	result_array.append_array(plain_cards.get_cards())
 	return result_array
+
+func _update_labels():
+		var light_size=light_cards.get_cards().size()
+		light_label.text="Light\n"+String(light_size)
+		
+		var animal_size=animal_cards.get_cards().size()
+		animal_label.text="Animal\n"+String(animal_size)		
+		
+		var ribbon_size=ribbon_cards.get_cards().size()
+		ribbon_label.text="Ribbon\n"+String(ribbon_size)
+		
+		var plain_size=plain_cards.get_cards().size()
+		plain_label.text="Plain\n"+String(plain_size)

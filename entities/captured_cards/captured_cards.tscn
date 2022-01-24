@@ -12,41 +12,97 @@ script = ExtResource( 1 )
 position = Vector2( 90, 0 )
 selectable = false
 
+[node name="LighBackground" type="Sprite" parent="LightCards"]
+position = Vector2( 396, 0 )
+scale = Vector2( 1.5, 1.5 )
+z_index = -2
+texture = ExtResource( 3 )
+
+[node name="LightLabel" type="Label" parent="LightCards"]
+margin_left = -339.0
+margin_top = -78.0
+margin_right = -299.0
+margin_bottom = -47.0
+rect_scale = Vector2( 5, 5 )
+text = "Light
+0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="AnimalCards" parent="." instance=ExtResource( 2 )]
 position = Vector2( 90, 285 )
 selectable = false
+
+[node name="AnimalBackground" type="Sprite" parent="AnimalCards"]
+position = Vector2( 292, 0 )
+scale = Vector2( 1.5, 1.5 )
+z_index = -2
+texture = ExtResource( 3 )
+offset = Vector2( 69.3333, -2 )
+
+[node name="AnimalLabel" type="Label" parent="AnimalCards"]
+margin_left = -339.0
+margin_top = -78.0
+margin_right = -294.0
+margin_bottom = -47.0
+rect_scale = Vector2( 5, 5 )
+text = "Animal
+0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="RibbonCards" parent="." instance=ExtResource( 2 )]
 position = Vector2( 90, 570 )
 selectable = false
 
+[node name="RibbonLabel" type="Label" parent="RibbonCards"]
+margin_left = -339.0
+margin_top = -78.0
+margin_right = -295.0
+margin_bottom = -47.0
+rect_scale = Vector2( 5, 5 )
+text = "Ribbon
+0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RibbonBackground" type="Sprite" parent="RibbonCards"]
+position = Vector2( 292, 0 )
+scale = Vector2( 1.5, 1.5 )
+z_index = -2
+texture = ExtResource( 3 )
+offset = Vector2( 69.3333, -2 )
+
 [node name="PlainCards" parent="." instance=ExtResource( 2 )]
 position = Vector2( 90, 855 )
 selectable = false
 
-[node name="LighBackground" type="Sprite" parent="."]
-position = Vector2( 486, 0 )
-scale = Vector2( 1.5, 1.5 )
-z_index = -2
-texture = ExtResource( 3 )
-
-[node name="AnimalBackground" type="Sprite" parent="."]
-position = Vector2( 382, 285 )
+[node name="PlainBackground" type="Sprite" parent="PlainCards"]
+position = Vector2( 292, 0 )
 scale = Vector2( 1.5, 1.5 )
 z_index = -2
 texture = ExtResource( 3 )
 offset = Vector2( 69.3333, -2 )
 
-[node name="RibbonBackground" type="Sprite" parent="."]
-position = Vector2( 382, 570 )
-scale = Vector2( 1.5, 1.5 )
-z_index = -2
-texture = ExtResource( 3 )
-offset = Vector2( 69.3333, -2 )
-
-[node name="PlainBackground" type="Sprite" parent="."]
-position = Vector2( 382, 855 )
-scale = Vector2( 1.5, 1.5 )
-z_index = -2
-texture = ExtResource( 3 )
-offset = Vector2( 69.3333, -2 )
+[node name="PlainLabel" type="Label" parent="PlainCards"]
+margin_left = -339.0
+margin_top = -78.0
+margin_right = -299.0
+margin_bottom = -47.0
+rect_scale = Vector2( 5, 5 )
+text = "Plain
+0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
