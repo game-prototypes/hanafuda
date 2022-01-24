@@ -71,12 +71,14 @@ _global_script_class_icons={
 config/name="Hanafuda"
 run/main_scene="res://scenes/main_menu.tscn"
 config/icon="res://icon.png"
+config/version="0.0.1"
 
 [autoload]
 
 Constants="*res://autoload/constants.gd"
 GameState="*res://autoload/game_state.gd"
 SceneSwitcher="*res://autoload/scene_switcher.tscn"
+VersionDisplay="*res://autoload/version_display.tscn"
 
 [debug]
 
