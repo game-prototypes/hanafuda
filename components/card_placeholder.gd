@@ -9,6 +9,7 @@ func add_card(new_card: Card) -> void:
 
 	# FIXME: card.faced_up needs to be set before add_child, these could be independent
 	card=new_card
+	Utils.reparent_node(card, self)	
 	card.move_to(to_global(Vector2.ZERO))
 
 

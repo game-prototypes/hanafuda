@@ -2,7 +2,7 @@
 
 [ext_resource path="res://entities/captured_cards/captured_cards.gd" type="Script" id=1]
 [ext_resource path="res://entities/card_stack/card_stack.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/captured_background.png" type="Texture" id=3]
+[ext_resource path="res://assets/cards_background.png" type="Texture" id=3]
 
 [node name="CapturedCards" type="Node2D"]
 position = Vector2( -1, 0 )

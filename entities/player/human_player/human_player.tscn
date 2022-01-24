@@ -7,7 +7,7 @@
 [node name="HumanPlayer" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
-[node name="HUD" type="CanvasLayer" parent="." index="3"]
+[node name="HUD" type="CanvasLayer" parent="." index="1"]
 
 [node name="KoiKoiPopup" parent="HUD" index="0" instance=ExtResource( 4 )]
 

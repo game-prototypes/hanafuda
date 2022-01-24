@@ -10,7 +10,7 @@
 [ext_resource path="res://entities/round_summary/round_summary.tscn" type="PackedScene" id=8]
 [ext_resource path="res://entities/card_stack/table/table.gd" type="Script" id=9]
 [ext_resource path="res://entities/captured_cards/captured_cards.tscn" type="PackedScene" id=10]
-[ext_resource path="res://assets/captured_background.png" type="Texture" id=11]
+[ext_resource path="res://assets/cards_background.png" type="Texture" id=11]
 
 [node name="GameRound" type="Node2D"]
 script = ExtResource( 1 )
@@ -19,10 +19,15 @@ __meta__ = {
 }
 
 [node name="Table" parent="." instance=ExtResource( 6 )]
-position = Vector2( 0, -147 )
+position = Vector2( 0, -217 )
 script = ExtResource( 9 )
 max_cards = 16
 centered = true
+
+[node name="Tablebackground" type="Sprite" parent="Table"]
+position = Vector2( 0, 101.5 )
+scale = Vector2( 2, 2.9235 )
+texture = ExtResource( 11 )
 
 [node name="Deck" parent="." instance=ExtResource( 4 )]
 position = Vector2( 836, -84 )
@@ -53,7 +58,7 @@ __meta__ = {
 }
 
 [node name="CapturedCards" parent="Players/HumanPlayer" instance=ExtResource( 10 )]
-position = Vector2( -1048, -61 )
+position = Vector2( -1095, -61 )
 scale = Vector2( 0.5, 0.5 )
 separation = -30.0
 
@@ -75,7 +80,7 @@ __meta__ = {
 }
 
 [node name="CapturedCards" parent="Players/OpponentPlayer" instance=ExtResource( 10 )]
-position = Vector2( 545, -60 )
+position = Vector2( 643, -60 )
 scale = Vector2( 0.4, 0.4 )
 separation = -30.0
 
