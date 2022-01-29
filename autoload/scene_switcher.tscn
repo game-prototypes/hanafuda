@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://autoload/scene_switcher.gd" type="Script" id=1]
-[ext_resource path="res://scenes/game_round.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/game_round_mobile.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/main_menu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/game_round.tscn" type="PackedScene" id=4]
 
 [node name="SceneSwitcher" type="Node"]
 script = ExtResource( 1 )
-game_round_scene = ExtResource( 2 )
+game_round_scene = ExtResource( 4 )
 main_menu_scene = ExtResource( 3 )
+mobile_game_scene = ExtResource( 2 )

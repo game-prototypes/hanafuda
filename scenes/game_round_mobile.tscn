@@ -19,21 +19,22 @@ __meta__ = {
 }
 
 [node name="Table" parent="." instance=ExtResource( 6 )]
-position = Vector2( 0, -217 )
+position = Vector2( 71, -217 )
 script = ExtResource( 9 )
 max_cards = 16
 centered = true
 
-[node name="TableBackground" type="Sprite" parent="Table"]
-position = Vector2( 0, 101.5 )
-scale = Vector2( 2, 2.9235 )
+[node name="Tablebackground" type="Sprite" parent="Table"]
+position = Vector2( -79, 101.5 )
+scale = Vector2( 1.76061, 2.9235 )
 texture = ExtResource( 11 )
 
 [node name="Deck" parent="." instance=ExtResource( 4 )]
-position = Vector2( 836, -84 )
+position = Vector2( 910, 194 )
 
 [node name="Camera" parent="." instance=ExtResource( 5 )]
 position = Vector2( 0, 0 )
+zoom = Vector2( 2.5, 2.5 )
 
 [node name="Players" type="Node2D" parent="."]
 script = ExtResource( 7 )
@@ -57,7 +58,7 @@ __meta__ = {
 }
 
 [node name="CapturedCards" parent="Players/HumanPlayer" instance=ExtResource( 10 )]
-position = Vector2( -1095, -61 )
+position = Vector2( -1092, -287 )
 scale = Vector2( 0.5, 0.5 )
 separation = -30.0
 
@@ -65,7 +66,7 @@ separation = -30.0
 position = Vector2( 4, -652 )
 
 [node name="Hand" parent="Players/OpponentPlayer" instance=ExtResource( 6 )]
-position = Vector2( -8, 0 )
+position = Vector2( -8, 31 )
 max_cards = 8
 selectable = false
 centered = true
@@ -79,8 +80,8 @@ __meta__ = {
 }
 
 [node name="CapturedCards" parent="Players/OpponentPlayer" instance=ExtResource( 10 )]
-position = Vector2( 716, -60 )
-scale = Vector2( 0.4, 0.4 )
+position = Vector2( 769, 163 )
+scale = Vector2( 0.35, 0.35 )
 separation = -30.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

@@ -72,6 +72,7 @@ config/name="Hanafuda"
 run/main_scene="res://scenes/main_menu.tscn"
 config/icon="res://icon.png"
 config/version="0.0.1"
+config/mobile=false
 
 [autoload]
 
@@ -87,8 +88,8 @@ gdscript/warnings/return_value_discarded=false
 
 [display]
 
-window/size/width=1500
-window/size/height=800
+window/size/width=900
+window/size/height=450
 
 [editor_plugins]
 
