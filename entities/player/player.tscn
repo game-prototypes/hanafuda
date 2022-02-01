@@ -7,6 +7,6 @@
 script = ExtResource( 1 )
 
 [node name="DeckCardPlaceholder" type="Node2D" parent="."]
-position = Vector2( 368, -105 )
+position = Vector2( 518, 6 )
 z_index = 1
 script = ExtResource( 2 )
