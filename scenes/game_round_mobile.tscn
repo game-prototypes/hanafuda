@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/game_round.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/human_player/human_player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/player/ai_player/ai_player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://entities/deck/deck.tscn" type="PackedScene" id=4]
+[ext_resource path="res://components/card_placeholder.gd" type="Script" id=5]
 [ext_resource path="res://entities/card_stack/card_stack.tscn" type="PackedScene" id=6]
 [ext_resource path="res://entities/player/player_spawner.gd" type="Script" id=7]
 [ext_resource path="res://entities/round_summary/round_summary.tscn" type="PackedScene" id=8]
@@ -32,11 +33,11 @@ __meta__ = {
 }
 
 [node name="Deck" parent="." instance=ExtResource( 4 )]
-position = Vector2( 910, 194 )
+position = Vector2( 848, 194 )
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 2.5, 2.5 )
+zoom = Vector2( 2, 2 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -52,7 +53,7 @@ ai_player = ExtResource( 3 )
 [node name="HumanPlayer" parent="Players" instance=ExtResource( 2 )]
 
 [node name="Hand" parent="Players/HumanPlayer" instance=ExtResource( 6 )]
-position = Vector2( 0, 599 )
+position = Vector2( 0, 454 )
 max_cards = 8
 centered = true
 
@@ -65,14 +66,19 @@ __meta__ = {
 }
 
 [node name="CapturedCards" parent="Players/HumanPlayer" instance=ExtResource( 10 )]
-position = Vector2( -1125, 219 )
+position = Vector2( -1125, 70 )
 scale = Vector2( 0.5, 0.5 )
 separation = -30.0
+
+[node name="DeckCardPlaceholder" type="Node2D" parent="Players/HumanPlayer"]
+position = Vector2( 708, 280 )
+z_index = 1
+script = ExtResource( 5 )
 
 [node name="OpponentPlayer" parent="Players" instance=ExtResource( 3 )]
 
 [node name="Hand" parent="Players/OpponentPlayer" instance=ExtResource( 6 )]
-position = Vector2( 0, -703 )
+position = Vector2( 0, -618 )
 max_cards = 8
 selectable = false
 centered = true
@@ -86,9 +92,14 @@ __meta__ = {
 }
 
 [node name="CapturedCards" parent="Players/OpponentPlayer" instance=ExtResource( 10 )]
-position = Vector2( 859, -631 )
+position = Vector2( 859, -541 )
 scale = Vector2( 0.35, 0.35 )
 separation = -30.0
+
+[node name="DeckCardPlaceholder" type="Node2D" parent="Players/OpponentPlayer"]
+position = Vector2( 657, -314 )
+z_index = 1
+script = ExtResource( 5 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
