@@ -23,6 +23,8 @@ onready var animal_label:Label=get_node(animal_cards_label)
 onready var ribbon_label:Label=get_node(ribbon_cards_label)
 onready var plain_label:Label=get_node(plain_cards_label)
 
+var collapsed=false
+
 func _ready():
 	light_cards.separation=separation
 	animal_cards.separation=separation
@@ -62,3 +64,14 @@ func _update_labels():
 		
 		var plain_size=plain_cards.get_cards().size()
 		plain_label.text="Plain\n"+String(plain_size)
+
+func _on_collapse_button():
+	if collapsed==false:
+		$Panel/CollapseButton.text=">"
+		var panel_size=$Panel.rect_size
+		$Panel.rect_position=Vector2(-panel_size.x,0)
+	else:
+		$Panel/CollapseButton.text="<"
+		$Panel.rect_position=Vector2(0,0)	
+	collapsed=!collapsed
+	

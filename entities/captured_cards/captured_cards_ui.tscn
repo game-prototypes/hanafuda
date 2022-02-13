@@ -130,3 +130,16 @@ text = "Plain
 0"
 align = 1
 valign = 1
+
+[node name="CollapseButton" type="Button" parent="Panel"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_right = 13.0
+text = "<"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Panel/CollapseButton" to="." method="_on_collapse_button"]

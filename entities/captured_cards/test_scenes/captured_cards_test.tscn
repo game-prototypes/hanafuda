@@ -18,7 +18,7 @@ separation = -30.0
 position = Vector2( -200, 167 )
 
 [node name="CapturedCards" parent="." instance=ExtResource( 4 )]
-anchor_right = 0.0
+anchor_top = 0.0
 anchor_bottom = 0.0
 margin_left = 13.0
 margin_top = 591.0
