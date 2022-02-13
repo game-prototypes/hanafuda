@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://entities/captured_cards/captured_cards.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/tests/captured_cards_test.gd" type="Script" id=2]
+[ext_resource path="res://entities/captured_cards/test_scenes/captured_cards_test.gd" type="Script" id=2]
 [ext_resource path="res://entities/deck/deck.tscn" type="PackedScene" id=3]
 [ext_resource path="res://entities/captured_cards/captured_cards_ui.tscn" type="PackedScene" id=4]
 
@@ -9,6 +9,7 @@
 script = ExtResource( 2 )
 
 [node name="CapturedCards_old" parent="." instance=ExtResource( 1 )]
+visible = false
 position = Vector2( 471, 79 )
 scale = Vector2( 0.5, 0.5 )
 separation = -30.0

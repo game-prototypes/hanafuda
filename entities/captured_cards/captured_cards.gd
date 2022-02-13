@@ -2,21 +2,33 @@ extends Node
 
 export var separation:float
 
-onready var light_cards:CardStackInterface=$LightCards
-onready var animal_cards:CardStackInterface=$AnimalCards
-onready var ribbon_cards:CardStackInterface=$RibbonCards
-onready var plain_cards:CardStackInterface=$PlainCards
+export(NodePath) var light_cards_path
+export(NodePath) var animal_cards_path
+export(NodePath) var ribbon_cards_path
+export(NodePath) var plain_cards_path
 
-onready var light_label:Label=$LightCards/LightLabel
-onready var animal_label:Label=$AnimalCards/AnimalLabel
-onready var ribbon_label:Label=$RibbonCards/RibbonLabel
-onready var plain_label:Label=$PlainCards/PlainLabel
+onready var light_cards=get_node(light_cards_path)
+onready var animal_cards=get_node(animal_cards_path)
+onready var ribbon_cards=get_node(ribbon_cards_path)
+onready var plain_cards=get_node(plain_cards_path)
+
+export(NodePath) var light_cards_label
+export(NodePath) var animal_cards_label
+export(NodePath) var ribbon_cards_label
+export(NodePath) var plain_cards_label
+
+
+onready var light_label:Label=get_node(light_cards_label)
+onready var animal_label:Label=get_node(animal_cards_label)
+onready var ribbon_label:Label=get_node(ribbon_cards_label)
+onready var plain_label:Label=get_node(plain_cards_label)
 
 func _ready():
-	$LightCards.separation=separation
-	$AnimalCards.separation=separation
-	$RibbonCards.separation=separation
-	$PlainCards.separation=separation
+	pass
+	#$LightCards.separation=separation
+	#$AnimalCards.separation=separation
+	#$RibbonCards.separation=separation
+	#$PlainCards.separation=separation
 
 func add_card(card:Card):
 	var card_info=card.info

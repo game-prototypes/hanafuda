@@ -7,11 +7,14 @@
 anchor_right = 0.96
 anchor_bottom = 0.031
 margin_right = -182.04
-margin_bottom = 204.4
+margin_bottom = 153.4
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+separation = -8.0
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -24,11 +27,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Cards" type="HBoxContainer" parent="."]
+[node name="Cards" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 30.0
-margin_right = -31.0
+margin_left = 14.0
+margin_top = 12.0
+margin_bottom = -10.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
