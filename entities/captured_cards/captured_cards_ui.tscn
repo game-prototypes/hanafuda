@@ -10,20 +10,20 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-light_cards_path = NodePath("Panel/HBoxContainer/VBoxContainer/Cards1/LightCards")
-animal_cards_path = NodePath("Panel/HBoxContainer/VBoxContainer/Cards2/AnimalCards")
-ribbon_cards_path = NodePath("Panel/HBoxContainer/VBoxContainer/Cards3/RibbonCards")
-plain_cards_path = NodePath("Panel/HBoxContainer/VBoxContainer/Cards4/PlainCards")
-light_cards_label = NodePath("Panel/HBoxContainer/VBoxContainer/Cards1/LightCardsLabel")
-animal_cards_label = NodePath("Panel/HBoxContainer/VBoxContainer/Cards2/AnimalCardsLabel")
-ribbon_cards_label = NodePath("Panel/HBoxContainer/VBoxContainer/Cards3/RibbonCardsLabel")
-plain_cards_label = NodePath("Panel/HBoxContainer/VBoxContainer/Cards4/PlainCardsLabel")
+light_cards_path = NodePath("Panel/HSplitContainer/CardStacks/LightCards")
+animal_cards_path = NodePath("Panel/HSplitContainer/CardStacks/AnimalCards")
+ribbon_cards_path = NodePath("Panel/HSplitContainer/CardStacks/RibbonCards")
+plain_cards_path = NodePath("Panel/HSplitContainer/CardStacks/PlainCards")
+light_cards_label = NodePath("Panel/HSplitContainer/Labels/LightCardsLabel")
+animal_cards_label = NodePath("Panel/HSplitContainer/Labels/AnimalCardsLabel")
+ribbon_cards_label = NodePath("Panel/HSplitContainer/Labels/RibbonCardsLabel")
+plain_cards_label = NodePath("Panel/HSplitContainer/Labels/PlainCardsLabel")
 
 [node name="Panel" type="Panel" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -232.0
-margin_right = 251.0
+margin_right = 261.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -35,8 +35,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer"]
-margin_right = 251.0
+[node name="HSplitContainer" type="HSplitContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+split_offset = -15
+dragger_visibility = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CardStacks" type="VBoxContainer" parent="Panel/HSplitContainer"]
+margin_right = 201.0
 margin_bottom = 232.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -44,95 +53,75 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Cards1" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer"]
-margin_right = 251.0
-margin_bottom = 55.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="LightCards" parent="Panel/HBoxContainer/VBoxContainer/Cards1" instance=ExtResource( 3 )]
+[node name="LightCards" parent="Panel/HSplitContainer/CardStacks" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 216.0
+margin_right = 201.0
 margin_bottom = 55.0
 
-[node name="LightCardsLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/Cards1"]
-margin_left = 220.0
-margin_right = 251.0
+[node name="AnimalCards" parent="Panel/HSplitContainer/CardStacks" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 59.0
+margin_right = 201.0
+margin_bottom = 114.0
+
+[node name="RibbonCards" parent="Panel/HSplitContainer/CardStacks" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 118.0
+margin_right = 201.0
+margin_bottom = 173.0
+
+[node name="PlainCards" parent="Panel/HSplitContainer/CardStacks" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 177.0
+margin_right = 201.0
+margin_bottom = 232.0
+
+[node name="Labels" type="VBoxContainer" parent="Panel/HSplitContainer"]
+margin_left = 201.0
+margin_right = 261.0
+margin_bottom = 232.0
+
+[node name="LightCardsLabel" type="Label" parent="Panel/HSplitContainer/Labels"]
+margin_right = 60.0
 margin_bottom = 55.0
-size_flags_horizontal = 0
+size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "Light
 0"
 align = 1
 valign = 1
 
-[node name="Cards2" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer"]
+[node name="AnimalCardsLabel" type="Label" parent="Panel/HSplitContainer/Labels"]
 margin_top = 59.0
-margin_right = 251.0
+margin_right = 60.0
 margin_bottom = 114.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="AnimalCards" parent="Panel/HBoxContainer/VBoxContainer/Cards2" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 202.0
-margin_bottom = 55.0
-
-[node name="AnimalCardsLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/Cards2"]
-margin_left = 206.0
-margin_right = 251.0
-margin_bottom = 55.0
-size_flags_horizontal = 0
 size_flags_vertical = 7
 text = "Animal
 0"
 align = 1
 valign = 1
 
-[node name="Cards3" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer"]
+[node name="RibbonCardsLabel" type="Label" parent="Panel/HSplitContainer/Labels"]
 margin_top = 118.0
-margin_right = 251.0
+margin_right = 60.0
 margin_bottom = 173.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="RibbonCards" parent="Panel/HBoxContainer/VBoxContainer/Cards3" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 203.0
-margin_bottom = 55.0
-
-[node name="RibbonCardsLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/Cards3"]
-margin_left = 207.0
-margin_right = 251.0
-margin_bottom = 55.0
-size_flags_horizontal = 0
 size_flags_vertical = 7
 text = "Ribbon
 0"
 align = 1
 valign = 1
 
-[node name="Cards4" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer"]
+[node name="PlainCardsLabel" type="Label" parent="Panel/HSplitContainer/Labels"]
 margin_top = 177.0
-margin_right = 251.0
+margin_right = 60.0
 margin_bottom = 232.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="PlainCards" parent="Panel/HBoxContainer/VBoxContainer/Cards4" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 216.0
-margin_bottom = 55.0
-
-[node name="PlainCardsLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/Cards4"]
-margin_left = 220.0
-margin_right = 251.0
-margin_bottom = 55.0
-size_flags_horizontal = 0
 size_flags_vertical = 7
 text = "Plain
 0"
