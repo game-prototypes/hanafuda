@@ -4,12 +4,15 @@
 [ext_resource path="res://entities/card_stack/card_stack_ui/card_stack_ui.tscn" type="PackedScene" id=3]
 
 [node name="CapturedCards" type="Control"]
-anchor_right = 1.0
+anchor_top = 1.0
 anchor_bottom = 1.0
+margin_top = -245.0
+margin_right = 276.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+separation = -8.0
 light_cards_path = NodePath("Panel/HSplitContainer/CardStacks/LightCards")
 animal_cards_path = NodePath("Panel/HSplitContainer/CardStacks/AnimalCards")
 ribbon_cards_path = NodePath("Panel/HSplitContainer/CardStacks/RibbonCards")
@@ -20,10 +23,10 @@ ribbon_cards_label = NodePath("Panel/HSplitContainer/Labels/RibbonCardsLabel")
 plain_cards_label = NodePath("Panel/HSplitContainer/Labels/PlainCardsLabel")
 
 [node name="Panel" type="Panel" parent="."]
-anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -232.0
-margin_right = 261.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -45,8 +48,8 @@ __meta__ = {
 }
 
 [node name="CardStacks" type="VBoxContainer" parent="Panel/HSplitContainer"]
-margin_right = 201.0
-margin_bottom = 232.0
+margin_right = 216.0
+margin_bottom = 245.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -56,38 +59,38 @@ __meta__ = {
 [node name="LightCards" parent="Panel/HSplitContainer/CardStacks" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 201.0
-margin_bottom = 55.0
+margin_right = 216.0
+margin_bottom = 58.0
 
 [node name="AnimalCards" parent="Panel/HSplitContainer/CardStacks" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 59.0
-margin_right = 201.0
-margin_bottom = 114.0
+margin_top = 62.0
+margin_right = 216.0
+margin_bottom = 120.0
 
 [node name="RibbonCards" parent="Panel/HSplitContainer/CardStacks" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 118.0
-margin_right = 201.0
-margin_bottom = 173.0
+margin_top = 124.0
+margin_right = 216.0
+margin_bottom = 182.0
 
 [node name="PlainCards" parent="Panel/HSplitContainer/CardStacks" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 177.0
-margin_right = 201.0
-margin_bottom = 232.0
+margin_top = 186.0
+margin_right = 216.0
+margin_bottom = 245.0
 
 [node name="Labels" type="VBoxContainer" parent="Panel/HSplitContainer"]
-margin_left = 201.0
-margin_right = 261.0
-margin_bottom = 232.0
+margin_left = 216.0
+margin_right = 276.0
+margin_bottom = 245.0
 
 [node name="LightCardsLabel" type="Label" parent="Panel/HSplitContainer/Labels"]
 margin_right = 60.0
-margin_bottom = 55.0
+margin_bottom = 58.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "Light
@@ -96,9 +99,9 @@ align = 1
 valign = 1
 
 [node name="AnimalCardsLabel" type="Label" parent="Panel/HSplitContainer/Labels"]
-margin_top = 59.0
+margin_top = 62.0
 margin_right = 60.0
-margin_bottom = 114.0
+margin_bottom = 120.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "Animal
@@ -107,9 +110,9 @@ align = 1
 valign = 1
 
 [node name="RibbonCardsLabel" type="Label" parent="Panel/HSplitContainer/Labels"]
-margin_top = 118.0
+margin_top = 124.0
 margin_right = 60.0
-margin_bottom = 173.0
+margin_bottom = 182.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "Ribbon
@@ -118,9 +121,9 @@ align = 1
 valign = 1
 
 [node name="PlainCardsLabel" type="Label" parent="Panel/HSplitContainer/Labels"]
-margin_top = 177.0
+margin_top = 186.0
 margin_right = 60.0
-margin_bottom = 232.0
+margin_bottom = 245.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "Plain

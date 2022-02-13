@@ -19,8 +19,10 @@ var table:CardStack # Set by main TODO: improve
 var deck:Deck # Set by main 
 
 onready var hand:CardStack=$Hand
-onready var captured_cards=$CapturedCards
 onready var player_deck_card=$DeckCardPlaceholder
+
+export(NodePath) var captured_cards_path
+onready var captured_cards=get_node(captured_cards_path)
 
 var points=0
 
@@ -28,6 +30,7 @@ signal turn_finished(player, win_round)
 signal koi_koi()
 
 func _ready():
+	captured_cards=get_node(captured_cards_path)
 	assert(hand!=null and captured_cards!=null, "Hand and captured cards not avilable for player")
 
 func game_setup(_id: int, _table:CardStack, _deck:Deck) -> void:

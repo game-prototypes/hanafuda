@@ -7,6 +7,14 @@
 [node name="CapturedCards" type="Node2D"]
 position = Vector2( -1, 0 )
 script = ExtResource( 1 )
+light_cards_path = NodePath("LightCards")
+animal_cards_path = NodePath("AnimalCards")
+ribbon_cards_path = NodePath("RibbonCards")
+plain_cards_path = NodePath("PlainCards")
+light_cards_label = NodePath("LightCards/LightLabel")
+animal_cards_label = NodePath("AnimalCards/AnimalLabel")
+ribbon_cards_label = NodePath("RibbonCards/RibbonLabel")
+plain_cards_label = NodePath("PlainCards/PlainLabel")
 
 [node name="LightCards" parent="." instance=ExtResource( 2 )]
 position = Vector2( 90, 0 )

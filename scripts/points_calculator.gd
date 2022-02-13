@@ -11,9 +11,9 @@ static func tally_points(cards: Array) -> int:
 
 static func filter_cards_by_type(cards:Array, type:int)->Array:
 	var filtered_cards=[]
-	for card in cards:
-		if card.info.type==type:
-			filtered_cards.append(card)
+	for cardInfo in cards:
+		if cardInfo.type==type:
+			filtered_cards.append(cardInfo)
 	return filtered_cards
 
 static func light_cards_points(cards:Array) -> int:
@@ -36,8 +36,8 @@ static func light_cards_points(cards:Array) -> int:
 	return 0
 	
 static func has_card_with_id(cards:Array, id: int) -> bool:
-	for card in cards:
-		if card.info.id==id:
+	for cardInfo in cards:
+		if cardInfo.id==id:
 			return true
 	return false
 

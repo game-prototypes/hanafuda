@@ -24,11 +24,10 @@ onready var ribbon_label:Label=get_node(ribbon_cards_label)
 onready var plain_label:Label=get_node(plain_cards_label)
 
 func _ready():
-	pass
-	#$LightCards.separation=separation
-	#$AnimalCards.separation=separation
-	#$RibbonCards.separation=separation
-	#$PlainCards.separation=separation
+	light_cards.separation=separation
+	animal_cards.separation=separation
+	ribbon_cards.separation=separation
+	plain_cards.separation=separation
 
 func add_card(card:Card):
 	var card_info=card.info
