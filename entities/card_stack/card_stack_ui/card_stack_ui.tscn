@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/cards_background.png" type="Texture" id=2]
+[ext_resource path="res://entities/card_stack/card_stack_ui/card_stack_ui.gd" type="Script" id=3]
+
+[node name="CardStack" type="Control"]
+anchor_right = 0.96
+anchor_bottom = 0.031
+margin_right = -182.04
+margin_bottom = 204.4
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Cards" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_right = -31.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

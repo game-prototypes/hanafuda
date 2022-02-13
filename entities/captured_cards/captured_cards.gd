@@ -1,11 +1,11 @@
-extends Node2D
+extends Node
 
 export var separation:float
 
-onready var light_cards:CardStack=$LightCards
-onready var animal_cards:CardStack=$AnimalCards
-onready var ribbon_cards:CardStack=$RibbonCards
-onready var plain_cards:CardStack=$PlainCards
+onready var light_cards:CardStackInterface=$LightCards
+onready var animal_cards:CardStackInterface=$AnimalCards
+onready var ribbon_cards:CardStackInterface=$RibbonCards
+onready var plain_cards:CardStackInterface=$PlainCards
 
 onready var light_label:Label=$LightCards/LightLabel
 onready var animal_label:Label=$AnimalCards/AnimalLabel

@@ -1,17 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://entities/card_stack/card_stack.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/tests/card_stack_test.gd" type="Script" id=2]
-[ext_resource path="res://entities/deck/deck.tscn" type="PackedScene" id=3]
-[ext_resource path="res://entities/camera/main_camera.tscn" type="PackedScene" id=4]
-[ext_resource path="res://entities/card_stack/table/table.tscn" type="PackedScene" id=5]
+[ext_resource path="res://entities/deck/deck.tscn" type="PackedScene" id=1]
+[ext_resource path="res://entities/card_stack/card_stack.tscn" type="PackedScene" id=2]
+[ext_resource path="res://entities/card_stack/card_stack_ui/card_stack_ui.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entities/card_stack/test_scenes/card_stack_test.gd" type="Script" id=4]
 
 [node name="CardStackTest" type="Node2D"]
-script = ExtResource( 2 )
+script = ExtResource( 4 )
 
-[node name="Deck" parent="." instance=ExtResource( 3 )]
-
-[node name="Camera" parent="." instance=ExtResource( 4 )]
+[node name="Deck" parent="." instance=ExtResource( 1 )]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -48,14 +45,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Table" parent="." instance=ExtResource( 5 )]
-position = Vector2( 703, 234 )
+[node name="Table" parent="CanvasLayer" instance=ExtResource( 3 )]
+margin_left = 242.0
+margin_top = 159.0
+margin_right = -26.04
+margin_bottom = 335.4
 
-[node name="Hand" parent="." instance=ExtResource( 1 )]
+[node name="Hand" parent="." instance=ExtResource( 2 )]
 position = Vector2( 225, 615 )
 separation = 2.0
 
 [connection signal="pressed" from="CanvasLayer/Panel/AddCardHandButton" to="." method="_on_add_card_to_hand"]
 [connection signal="pressed" from="CanvasLayer/Panel/AddCardTableButton" to="." method="_on_add_card_to_table"]
-[connection signal="card_selected" from="Table" to="." method="_on_table_card_selected"]
 [connection signal="card_selected" from="Hand" to="." method="_on_hand_card_selected"]

@@ -1,7 +1,7 @@
 extends Node2D
 
 onready var deck:Deck = $Deck
-onready var table:CardStack=$Table
+onready var table=$CanvasLayer/Table
 onready var hand:CardStack=$Hand
 
 func _ready():

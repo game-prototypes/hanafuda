@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/cards_background.png" type="Texture" id=1]
+[ext_resource path="res://entities/captured_cards/captured_cards.gd" type="Script" id=2]
+[ext_resource path="res://entities/card_stack/card_stack_ui/card_stack_ui.tscn" type="PackedScene" id=3]
+
+[node name="CapturedCards" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -237.0
+margin_right = 196.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+anchor_right = 1.0
+margin_top = 8.0
+margin_right = 784.0
+margin_bottom = 283.0
+rect_scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 1 )
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CardStack" parent="Panel" instance=ExtResource( 3 )]
+margin_left = 1.0
+margin_top = 63.0
+margin_right = 465.0
+margin_bottom = 16.0
+rect_scale = Vector2( 0.3, 0.3 )
