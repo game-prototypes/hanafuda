@@ -73,5 +73,4 @@ func _on_collapse_button():
 	else:
 		$Panel/CollapseButton.text="<"
 		$Panel.rect_position=Vector2(0,0)	
-	collapsed=!collapsed
-	
+	collapsed=!collapsed	
