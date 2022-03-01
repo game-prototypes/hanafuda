@@ -25,6 +25,16 @@ onready var plain_label:Label=get_node(plain_cards_label)
 export(NodePath) var card_target
 var card_target_position:Vector2
 
+export(String) var collapse_text="<"
+export(String) var expand_text=">"
+
+enum COLLAPSE_SIDE {
+	LEFT,
+	RIGHT
+}
+
+export(COLLAPSE_SIDE) var collapse_side=COLLAPSE_SIDE.LEFT
+
 var collapsed=false
 
 func _ready():
@@ -72,10 +82,13 @@ func _update_labels():
 
 func _on_collapse_button():
 	if collapsed==false:
-		$Panel/CollapseButton.text=">"
+		$Panel/CollapseButton.text=expand_text
 		var panel_size=$Panel.rect_size
-		$Panel.rect_position=Vector2(-panel_size.x,0)
+		if collapse_side==COLLAPSE_SIDE.LEFT:
+			$Panel.rect_position=Vector2(-panel_size.x,0)
+		elif collapse_side==COLLAPSE_SIDE.RIGHT:
+			$Panel.rect_position=Vector2(panel_size.x,0)
 	else:
-		$Panel/CollapseButton.text="<"
+		$Panel/CollapseButton.text=collapse_text
 		$Panel.rect_position=Vector2(0,0)	
 	collapsed=!collapsed	
