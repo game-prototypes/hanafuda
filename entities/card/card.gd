@@ -5,6 +5,7 @@ export(Texture) var back_texture: Texture
 export(float) var movement_speed: float = 3000.0
 
 signal on_click(card, button_index)
+signal on_move_finished(card)
 
 onready var sprite:Sprite=$Sprite
 onready var tween:Tween=$Tween
@@ -51,3 +52,7 @@ func _set_face(face:bool):
 	faced_up=face
 	if sprite != null:
 		_update_texture()
+
+
+func _on_move_completed(object, key):
+	emit_signal("on_move_finished", self)

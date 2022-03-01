@@ -9,7 +9,12 @@ onready var cards_container=$Cards
 func _ready():
 	card_height=$Cards.rect_size.y
 
-func add_card(card: Card) -> void:
+func add_card(card: Card, target:Vector2) -> void:
+	card.move_to(target)
+	card.connect("on_move_finished", self, "_on_card_moved")
+
+
+func _on_card_moved(card) -> void:
 	cards.append(card.info)
 	card.queue_free()
 	var card_image=TextureRect.new()

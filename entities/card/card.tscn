@@ -33,3 +33,4 @@ texture = ExtResource( 5 )
 [node name="Tween" type="Tween" parent="."]
 
 [connection signal="on_click" from="Area2D" to="." method="_on_click"]
+[connection signal="tween_completed" from="Tween" to="." method="_on_move_completed"]

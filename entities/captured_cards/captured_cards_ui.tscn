@@ -10,9 +10,6 @@ margin_top = -245.0
 margin_right = 276.0
 mouse_filter = 2
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 separation = -8.0
 light_cards_path = NodePath("Panel/HSplitContainer/CardStacks/LightCards")
 animal_cards_path = NodePath("Panel/HSplitContainer/CardStacks/AnimalCards")

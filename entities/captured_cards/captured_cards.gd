@@ -17,11 +17,13 @@ export(NodePath) var animal_cards_label
 export(NodePath) var ribbon_cards_label
 export(NodePath) var plain_cards_label
 
-
 onready var light_label:Label=get_node(light_cards_label)
 onready var animal_label:Label=get_node(animal_cards_label)
 onready var ribbon_label:Label=get_node(ribbon_cards_label)
 onready var plain_label:Label=get_node(plain_cards_label)
+
+export(NodePath) var card_target
+var card_target_position:Vector2
 
 var collapsed=false
 
@@ -30,18 +32,21 @@ func _ready():
 	animal_cards.separation=separation
 	ribbon_cards.separation=separation
 	plain_cards.separation=separation
+	
+	var card_target_node:Node2D=get_node(card_target)
+	card_target_position=card_target_node.global_position
 
 func add_card(card:Card):
 	var card_info=card.info
 	match card_info.type:
 			Constants.CardType.PLAIN:
-				plain_cards.add_card(card)
+				plain_cards.add_card(card, card_target_position)
 			Constants.CardType.POETRY_RIBBON,Constants.CardType.PLAIN_RIBBON,Constants.CardType.BLUE_RIBBON:
-				ribbon_cards.add_card(card)
+				ribbon_cards.add_card(card, card_target_position)
 			Constants.CardType.LIGHT:
-				light_cards.add_card(card)
+				light_cards.add_card(card, card_target_position)
 			Constants.CardType.ANIMAL:
-				animal_cards.add_card(card)
+				animal_cards.add_card(card, card_target_position)
 	_update_labels()
 
 func get_cards()->Array:
