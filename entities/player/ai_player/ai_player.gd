@@ -18,6 +18,7 @@ func _match_hand_card():
 	var pair_to_capture=_select_pair(hand_cards, table_cards)
 	
 	if pair_to_capture!=null:
+		pair_to_capture[0].faced_up=true
 		capture_hand_card(pair_to_capture[0], pair_to_capture[1])
 	else:
 		_discard_lowest_card()

@@ -27,7 +27,8 @@ onready var captured_cards=get_node(captured_cards_path)
 var points=0
 
 signal turn_finished(player, win_round)
-signal koi_koi()
+signal koi_koi
+signal _capture_finished
 
 func _ready():
 	captured_cards=get_node(captured_cards_path)
@@ -65,10 +66,12 @@ func discard(card: Card) -> void:
 
 func capture_hand_card(hand_card: Card, table_card: Card) -> void:
 	_assert_action(TurnPhase.HandMatching)
-	var card_from_table=_get_table_cards_to_capture(hand_card, table_card)
-	for card_to_capture in card_from_table:
-		_capture_card_from_stack(table, card_to_capture)
-	_capture_card_from_stack(hand, hand_card)
+	var cards_to_capture=_get_table_cards_to_capture(hand_card, table_card)
+	for card_to_capture in cards_to_capture:
+		table.remove_card(card_to_capture)
+	hand.remove_card(hand_card)
+	_capture_cards(hand_card, cards_to_capture, cards_to_capture[0].global_position)
+	yield(self, "_capture_finished")
 	_set_deck_phase()	
 
 func capture_deck_card(table_card: Card) -> void:
@@ -76,12 +79,16 @@ func capture_deck_card(table_card: Card) -> void:
 	var deck_card=player_deck_card.card
 	assert(deck_card != null, "Deck card not available")
 	
-	var card_from_table=_get_table_cards_to_capture(deck_card, table_card)
-	for card_to_capture in card_from_table:
-		_capture_card_from_stack(table, card_to_capture)
+	var cards_to_capture=_get_table_cards_to_capture(deck_card, table_card)
+	for card_to_capture in cards_to_capture:
+		table.remove_card(card_to_capture)
 	player_deck_card.remove_card()
-	captured_cards.add_card(deck_card)
+	_capture_cards(deck_card, cards_to_capture, cards_to_capture[0].global_position)
+	
+	yield(self, "_capture_finished")
 	_update_points_and_finish_turn()
+
+
 
 func koi_koi():
 	_assert_action(TurnPhase.KoiKoi)
@@ -164,10 +171,6 @@ func _take_deck_card() -> Card:
 	player_deck_card.add_card(card) 
 	return card
 
-func _capture_card_from_stack(from_stack:CardStack, card: Card)->void:
-	from_stack.remove_card(card)
-	captured_cards.add_card(card)
-
 func _assert_action(expected_phase: int):
 	assert(current_turn and phase==expected_phase, "Invalid action")
 
@@ -180,4 +183,16 @@ func _get_table_cards_to_capture(player_card: Card, table_card:Card)->Array:
 	else:
 		return [table_card]
 	
-
+func _capture_cards(card1: Card, cards: Array, capture_position: Vector2):
+	for card in cards:
+		card.move_to(capture_position)
+	
+	card1.call_deferred("move_to", capture_position)# just to avoid yield race conditions
+	yield(card1,"on_move_finished")
+	yield(get_tree().create_timer(0.1), "timeout")
+	
+	captured_cards.call_deferred("add_card", card1) # just to avoid yield race conditions
+	for card in cards:
+		captured_cards.add_card(card)
+	yield(card1,"on_move_finished")
+	emit_signal("_capture_finished")
