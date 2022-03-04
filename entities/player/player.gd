@@ -49,11 +49,17 @@ func begin_turn():
 func add_card(card:Card):
 	hand.add_card(card)
 
+func reset():
+	return hand.reset()
+
 func get_captured_cards() -> Array:
 	return captured_cards.get_cards()
 
 func hand_cards_count()->int:
 	return hand.get_cards().size()
+
+func get_cards(): # Returns cards in hand
+	return hand.get_cards()
 
 # Actions
 ## Actions are public methods that perform an action or asserts if it is not valid

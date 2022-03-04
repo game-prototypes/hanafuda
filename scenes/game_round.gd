@@ -10,7 +10,7 @@ onready var round_summary:PopupDialog=$CanvasLayer/RoundSummary
 var dealer
 var koi_koi: bool = false
 
-var turn_initiative:=[] #Represents the order of turns (players ids), beggining by index 0
+var turn_initiative:=[] # Represents the order of turns (players ids), beggining by index 0
 
 func _enter_tree():
 	randomize()

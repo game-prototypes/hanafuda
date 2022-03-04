@@ -6,7 +6,7 @@ enum CardFace {
 	DOWN
 }
 
-var cards:Array = [] #Include cards and null for cards removed, i is the card position
+var cards:Array = [] # Include cards and null for cards removed, i is the card position
 
 	
 func add_card(card: Card) -> void:
@@ -15,6 +15,10 @@ func add_card(card: Card) -> void:
 func remove_card(card: Card) -> void:
 	assert(true, "Not Implemented")
 
+func reset() -> Array:
+	var result=get_cards()
+	cards=[]
+	return result
 
 func get_cards() -> Array:
 	var result=[]
